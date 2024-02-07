@@ -3,7 +3,7 @@ from models.player import Player
 
 class PlayerView:
     def afficher_player(self):
-        pass
+        print(Player.name, Player.surname, Player.score)
 
     def afficher_list_players(self, players: [Player]):
         print("Afficher tous les joueurs: ")
@@ -24,11 +24,3 @@ class PlayerView:
         print("2. Pour lister tous les joueurs")
         print("0. Quitter")
         return input("Votre choix: ")
-
-
-"""Affiche les informations liées aux joueurs ainsi
-que les demandes d'informartions relatives aux joueurs
-input[nom du joueur]...
-
-print( le joueur{nom} a {score} points à l'issu du tour {numero du tour})
-"""

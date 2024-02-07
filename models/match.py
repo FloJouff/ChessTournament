@@ -1,4 +1,4 @@
-import random
+from models.player import Player
 
 
 class Match:
@@ -7,23 +7,6 @@ class Match:
         self.player2 = player2
 
 # fonction permettant la résolution aléatoire d'un match:
-
-    def match_progress(player1, player2):
-        match_result = random.randint(0, 2)
-        if match_result == 0:
-            print("Match nul")
-            player1[1] += 0.5
-            player2[1] += 0.5
-            print("Score du joueur1: ", player1[1])
-            print("Score du joueur2: ", player2[1])
-        elif match_result == 1:
-            print(f"Victoire de {player1[0]}")
-            player1[1] += 1
-            print("Score du joueur1: ", player1[1])
-        else:
-            print(f"Victoire de {player2[0]}")
-            player2[1] += 1
-            print("Score du joueur2: ", player2[1])
 
     def __repr__(self):
         return f"({self.player1[0]} vs {self.player2[0]})"
