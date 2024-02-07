@@ -1,0 +1,54 @@
+
+{
+"players" : [
+{
+    "name": "Maximoff",
+    "surname": "Wanda",
+    "gender" : "F",
+    "date_of_birth": "01/03/1964",
+    "Identifiant National d'échec": ""
+},{
+    "name": "Parker",
+    "surname": "Peter",
+    "gender" : "M",
+    "date_of_birth": "15/08/1962",
+    "Identifiant National d'échec": ""
+},{
+    "name": "Xavier",
+    "surname": "Charles",
+    "gender" : "M",
+    "date_of_birth": "12/09/1963",
+    "Identifiant National d'échec": ""
+},{
+    "name": "Lensher",
+    "surname": "Eric",
+    "gender" : "M",
+    "date_of_birth": "25/09/1963",
+    "Identifiant National d'échec": ""
+},{
+    "name": "Howeltt",
+    "surname": "James",
+    "gender" : "M",
+    "date_of_birth": "11/10/1974",
+    "Identifiant National d'échec": ""
+},{
+    "name": "Stark",
+    "surname": "Tony",
+    "gender" : "M",
+    "date_of_birth": "28/03/1963",
+    "Identifiant National d'échec": ""
+},{
+    "name": "Rogers",
+    "surname": "Steve",
+    "gender" : "M",
+    "date_of_birth": "24/12/1940",
+    "Identifiant National d'échec": ""
+},{
+    "name": "Danvers",
+    "surname": "Carol",
+    "gender" : "F",
+    "date_of_birth": "10/03/1968",
+    "Identifiant National d'échec": ""
+}
+]
+}
