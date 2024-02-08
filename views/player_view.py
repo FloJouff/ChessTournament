@@ -22,5 +22,6 @@ class PlayerView:
         print("Menu Player")
         print("1. Pour Ajouter un joueur")
         print("2. Pour lister tous les joueurs")
+        print("3. Pour afficher les informations d'un joueur")
         print("0. Quitter")
         return input("Votre choix: ")

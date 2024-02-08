@@ -28,7 +28,6 @@ class Player:
         with open("data/player_data.json", "r") as f:
             data = json.load(f)
 
-        print("Chargement des données d'un joueur")
         choice = input("Nom du joueur recherché:")
 
         for player in data["players"]:

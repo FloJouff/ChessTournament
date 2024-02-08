@@ -19,6 +19,8 @@ class PlayerController:
             elif choix == "2":
                 players = Player.load_all_players()
                 self.playerview.afficher_list_players(players)
+            elif choix == "3":
+                player = Player.load_one_player_from_json()
             elif choix == "0":
                 print("Quitter")
                 break

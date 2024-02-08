@@ -18,17 +18,15 @@ class TournamentController:
                 tournoi = Tournament(data["name"], data["place"], data["dates"])
                 tournoi.save()
             elif choix == "2":
-                
-                players = Player.load_all_players()
-                self.playerview.afficher_list_players(players)
+                pass
+            elif choix == "3":
+                data["description"] = input("Veuillez rentrer une description du tournoi: ")
             elif choix == "0":
                 print("Quitter")
                 break
 
+    def score_management():
+        pass
 
-def score_management():
-    pass
-
-
-def round_management():
-    pass
+    def round_management():
+        pass
