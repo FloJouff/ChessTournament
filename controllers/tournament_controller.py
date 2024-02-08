@@ -1,4 +1,3 @@
-import random
 from views.tournament_view import TournamentView
 from models.player import Player
 from models.tournament import Tournament
@@ -18,15 +17,14 @@ class TournamentController:
                 tournoi = Tournament(data["name"], data["place"], data["dates"])
                 tournoi.save()
             elif choix == "2":
-                pass
+                TournamentView.register_player()
             elif choix == "3":
+                pass
+            elif choix == "4":
                 data["description"] = input("Veuillez rentrer une description du tournoi: ")
             elif choix == "0":
                 print("Quitter")
                 break
-
-    def score_management():
-        pass
 
     def round_management():
         pass

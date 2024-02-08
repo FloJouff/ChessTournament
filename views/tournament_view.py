@@ -2,6 +2,9 @@ from models.tournament import Tournament
 
 
 class TournamentView:
+    def __init__(self) -> None:
+        self.tournament = Tournament()
+
     def afficher_tournoi(self):
         print(Tournament.name, Tournament.place)
 
@@ -12,18 +15,26 @@ class TournamentView:
         start_date = input("Date de début: ")
         end_date = input("Date de fin: ")
         return {name, place, start_date, end_date}
+    
+    def register_player(self):
+        print("Inscrire un nouveau participant?")
+        new_player = input("Nom du nouveau joueur: ")
+        Tournament.list_of_players.append(new_player)
+        return Tournament.list_of_players
 
     def menu_tournoi(self):
         print("Menu tournoi")
         print("1. Pour enregistrer les informations d'un tournoi")
         print("2. Pour inscrire un participant à ce tournoi")
-        print("3. Pour afficher les scores d'un tournoi")
+        print("3. Pour afficher le resultat d'un tournoi")
         print("4. Pour saisir une description ")
         print("0. Quitter")
         return input("Votre choix: ")
 
-""" Affiche les informations liées aux tournois et les demandes
+
+"""
+Affiche les informations liées aux tournois et les demandes
     d'informations relatives à ceux ci
 
-    input(nom du tournoi, date, lieu...)    
+    input(nom du tournoi, date, lieu...)
 """

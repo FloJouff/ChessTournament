@@ -1,4 +1,5 @@
 import json
+from models.player import Player
 
 
 class Tournament:
@@ -25,5 +26,10 @@ class Tournament:
         with open("data/tournaments.json", "a") as f:
             f.write(tournament_data)
 
-    def add_players(self):
+    def add_tournament_players(self):
         self.list_of_players = []
+        self.list_of_players.append(Player.name)
+        Player.score = 0.0
+        new_list = [(nom, Player.score) for nom in self.list_of_players]
+        for tuple in new_list:
+            print(tuple)
