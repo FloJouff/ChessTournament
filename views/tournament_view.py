@@ -1,4 +1,6 @@
-from models.tournament import Tournament
+from models.tournament import Tournament, Match
+from models.player import Player
+
 
 
 class TournamentView:
@@ -14,13 +16,20 @@ class TournamentView:
         place = input("Lieu: ")
         start_date = input("Date de début: ")
         end_date = input("Date de fin: ")
-        return {name, place, start_date, end_date}
-    
+        number_of_round = input("Nombre de tour pour ce tournoi: ")
+        return {name, place, start_date, end_date, number_of_round}
+
     def register_player(self):
-        print("Inscrire un nouveau participant?")
-        new_player = input("Nom du nouveau joueur: ")
-        Tournament.list_of_players.append(new_player)
-        return Tournament.list_of_players
+        print("Inscrire un participant?")
+        Player.name = input("Nom du joueur: ")
+        Tournament.players = []
+        Tournament.players.append(Player.name)
+        Player.score = 0.0
+        new_list = [(nom, Player.score) for nom in Tournament.players]
+        for tuple in new_list:
+            print(tuple)
+        print(new_list)
+        return new_list
 
     def menu_tournoi(self):
         print("Menu tournoi")
@@ -32,9 +41,18 @@ class TournamentView:
         return input("Votre choix: ")
 
 
-"""
-Affiche les informations liées aux tournois et les demandes
-    d'informations relatives à ceux ci
+class RoundView:
+    def round_menu(self):
+        print("Menu du tour")
+        print("1. Pour générer les matchs du premier tour")
+        print("2. Pour générer les matchs des tours suivants")
+        print("0. Quitter")
+        return input("Votre choix: ")
 
-    input(nom du tournoi, date, lieu...)
-"""
+
+class MatchView:
+    def afficher_match(self):
+        print(Match.player1, " vs ", Match.player2)
+
+    def afficher_match_scores():
+        print(Match.player1_score "  ", Match.player2_score)

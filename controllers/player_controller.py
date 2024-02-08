@@ -6,7 +6,7 @@ class PlayerController:
     def __init__(self) -> None:
         self.playerview = PlayerView()
 
-    def run_player(self,):
+    def run_player(self):
         choix = ""
         while (choix != "0"):
             choix = self.playerview.menu_player()
@@ -15,7 +15,7 @@ class PlayerController:
                 print(data)
                 player = Player(data["name"], data["surname"], data["gender"],
                                 data["date_of_birth"])
-                player.save()
+                player.create_player()
             elif choix == "2":
                 players = Player.load_all_players()
                 self.playerview.afficher_list_players(players)

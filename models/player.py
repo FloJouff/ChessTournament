@@ -17,10 +17,12 @@ class Player:
     def __repr__(self):
         return f"({self.name}, {self.surname})"
 
-    def create_player(self):
-        player = {"name": self.name, "surname": self.surname,
-                  "gender": self.gender, "date_of_birth": self.date_of_birth}
-        player_data = json.dumps(player, indent=4)
+    def to_dict(self,):
+        return {"name": self.name, "surname": self.surname,
+                "gender": self.gender, "date_of_birth": self.date_of_birth}
+
+    def save(self):
+        player_data = json.dumps(self.to_dict(), indent=4)
         with open("data/player_data.json", "a") as f:
             f.write(player_data)
 
@@ -38,9 +40,16 @@ class Player:
                 print("Date de naissance du joueur: ", player['date_of_birth'])
 
     def load_all_players():
+        player_list = []
         with open("data/player_data.json", "r") as f:
             data = json.load(f)
-
-        print("Liste des joueurs: ")
-        for player in data["players"]:
-            print(player['name'], player['surname'])
+            # c unelsite dictionnaire de player
+            # list de objet player
+            for player_dict in data:
+                p = Player()
+                p.name = player_dict["name"]
+                p.surname = player_dict["surname"]
+                p.gender = player_dict["gender"]
+                p.name = player_dict["name"]
+                player_list.append(p)
+        return player_list

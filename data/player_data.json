@@ -1,7 +1,5 @@
 
 {
-"players" : [
-{
     "name": "Maximoff",
     "surname": "Wanda",
     "gender" : "F",
@@ -49,6 +47,4 @@
     "gender" : "F",
     "date_of_birth": "10/03/1968",
     "Identifiant National d'échec": "MN12345"
-}
-]
 }

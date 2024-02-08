@@ -1,5 +1,4 @@
-{
-    "Tournament": [
+
 
     {
         "name": "Chess Tour-nament",
@@ -7,14 +6,45 @@
         "date de début": "12/10/2022",
         "date de fin": "14/10/2022",
         "description":"",
-        "liste des joueurs enregistrés": []},
+        "liste des joueurs enregistrés": [],
+        "rounds": [
+            {"Name" : "Round1",
+            "date": "12/10/2022",
+        "matches" [
+            ["idjoueur1", 1],["idjoueur2", 0]
+            ["id joueur3", 1],["idjoueur4",0]
+        ]
+        },
+        {"Name" : "Round2",
+        "date": "12/10/2022",
+    "matches" [
+        ["idjoueur1", 2],["idjoueur2", 0]
+        ["id joueur3", 2],["idjoueur4",0]
+    ]
+    }
+        ] 
+    }
     {
-        "name": "tournoi d'Orléans",
+        "name": "Tournoi d'Orléans",
         "place": "Orléan",
         "date de début": "12/01/2023",
         "date de fin": "14/01/2023",
         "description":"",
-        "liste des joueurs enregistrés": []  
-    }
+        "liste des joueurs enregistrés": [], 
+        "rounds": [
+            {"Name" : "Round1",
+            "date": "12/10/2022",
+        "matches" [
+            ["idjoueur1", 1],["idjoueur2", 0]
+            ["id joueur3", 1],["idjoueur4",0]
+        ]
+        },
+        {"Name" : "Round2",
+        "date": "12/10/2022",
+    "matches" [
+        ["idjoueur1", 2],["idjoueur2", 0]
+        ["id joueur3", 2],["idjoueur4",0]
     ]
-}
+    }
+        ] 
+    }
