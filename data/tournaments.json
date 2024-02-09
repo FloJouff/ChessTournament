@@ -1,5 +1,5 @@
 
-
+[
     {
         "name": "Chess Tour-nament",
         "place": "Tour",
@@ -10,20 +10,20 @@
         "rounds": [
             {"Name" : "Round1",
             "date": "12/10/2022",
-        "matches" [
-            ["idjoueur1", 1],["idjoueur2", 0]
-            ["id joueur3", 1],["idjoueur4",0]
+        "matches": [
+            ["idjoueur1", "1"],["idjoueur2", "0"],
+            ["id joueur3", "1"],["idjoueur4","0"]
         ]
         },
         {"Name" : "Round2",
         "date": "12/10/2022",
-    "matches" [
-        ["idjoueur1", 2],["idjoueur2", 0]
-        ["id joueur3", 2],["idjoueur4",0]
+        "matches": [
+            ["idjoueur1", "2"],["idjoueur2", "0"],
+            ["id joueur3", "2"],["idjoueur4","0"]
     ]
     }
         ] 
-    }
+    },
     {
         "name": "Tournoi d'Orléans",
         "place": "Orléan",
@@ -34,17 +34,18 @@
         "rounds": [
             {"Name" : "Round1",
             "date": "12/10/2022",
-        "matches" [
-            ["idjoueur1", 1],["idjoueur2", 0]
-            ["id joueur3", 1],["idjoueur4",0]
+        "matches" :[
+            ["idjoueur1", "1"],["idjoueur2", "0"],
+            ["id joueur3", "1"],["idjoueur4","0"]
         ]
         },
         {"Name" : "Round2",
         "date": "12/10/2022",
-    "matches" [
-        ["idjoueur1", 2],["idjoueur2", 0]
-        ["id joueur3", 2],["idjoueur4",0]
+        "matches" :[
+            ["idjoueur1", "2"],["idjoueur2", "0"],
+            ["id joueur3", "2"],["idjoueur4","0"]
     ]
     }
         ] 
     }
+]

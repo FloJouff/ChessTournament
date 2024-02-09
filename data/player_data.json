@@ -1,50 +1,10 @@
-
-{
-    "name": "Maximoff",
-    "surname": "Wanda",
-    "gender" : "F",
-    "date_of_birth": "01/03/1964",
-    "Identifiant National d'échec": ""
-},{
-    "name": "Parker",
-    "surname": "Peter",
-    "gender" : "M",
-    "date_of_birth": "15/08/1962",
-    "Identifiant National d'échec": "AB1345"
-},{
-    "name": "Xavier",
-    "surname": "Charles",
-    "gender" : "M",
-    "date_of_birth": "12/09/1963",
-    "Identifiant National d'échec": "CD56789"
-},{
-    "name": "Lensher",
-    "surname": "Eric",
-    "gender" : "M",
-    "date_of_birth": "25/09/1963",
-    "Identifiant National d'échec": "EF12345"
-},{
-    "name": "Howeltt",
-    "surname": "James",
-    "gender" : "M",
-    "date_of_birth": "11/10/1974",
-    "Identifiant National d'échec": "GH56789"
-},{
-    "name": "Stark",
-    "surname": "Tony",
-    "gender" : "M",
-    "date_of_birth": "28/03/1963",
-    "Identifiant National d'échec": "IJ12345"
-},{
-    "name": "Rogers",
-    "surname": "Steve",
-    "gender" : "M",
-    "date_of_birth": "24/12/1940",
-    "Identifiant National d'échec": "KL56789"
-},{
-    "name": "Danvers",
-    "surname": "Carol",
-    "gender" : "F",
-    "date_of_birth": "10/03/1968",
-    "Identifiant National d'échec": "MN12345"
-}
+[
+{"name": "Maximoff", "first_name": "Wanda", "gender" : "F", "date_of_birth": "01/03/1964", "Identifiant National d'échec": ""},
+{"name": "Parker", "first_name": "Peter", "gender" : "M", "date_of_birth": "15/08/1962", "Identifiant National d'échec": "AB1345"},
+{"name": "Xavier", "first_name": "Charles", "gender" : "M", "date_of_birth": "12/09/1963", "Identifiant National d'échec": "CD56789"},
+{"name": "Lensher", "first_name": "Eric", "gender" : "M", "date_of_birth": "25/09/1963", "Identifiant National d'échec": "EF12345"},
+{"name": "Howeltt", "first_name": "James", "gender" : "M", "date_of_birth": "11/10/1974", "Identifiant National d'échec": "GH56789"},
+{"name": "Stark", "first_name": "Tony", "gender" : "M", "date_of_birth": "28/03/1963", "Identifiant National d'échec": "IJ12345"},
+{"name": "Rogers", "first_name": "Steve", "gender" : "M", "date_of_birth": "24/12/1940", "Identifiant National d'échec": "KL56789"},
+{"name": "Danvers", "first_name": "Carol", "gender" : "F", "date_of_birth": "10/03/1968", "Identifiant National d'échec": "MN12345"}
+]

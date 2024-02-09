@@ -1,6 +1,5 @@
 from views.tournament_view import TournamentView, RoundView, MatchView
 from models.tournament import Tournament
-from models.player import Player
 import random
 import copy
 
@@ -9,20 +8,21 @@ class TournamentController:
     def __init__(self) -> None:
         self.tournamentview = TournamentView()
 
-    def run_tournament(self,):
+    def run_tournament(self):
         choix = ""
         while choix != "0":
             choix = self.tournamentview.menu_tournoi()
             if choix == "1":
                 data = self.tournamentview.get_tournament_infos()
                 print(data)
-                tournoi = Tournament(data["name"],
-                                     data["place"], data["dates"])
-                tournoi.save()
+                tournoi = Tournament(data[0],
+                                     data[1], data[2], data[3], data[4])
+                tournoi.create_tournament()
             elif choix == "2":
                 TournamentView.register_player()
             elif choix == "3":
-                self.add_tournament_players()
+                round = RoundController()
+                round.run_round()
             elif choix == "4":
                 data["description"] = input(
                     "Veuillez rentrer une description pour ce tournoi: "
@@ -30,14 +30,6 @@ class TournamentController:
             elif choix == "0":
                 print("Quitter")
                 break
-
-    def add_tournament_players(self):
-        Tournament.players.append(Player.name)
-        Player.score = 0.0
-        new_list = [(nom, Player.score) for nom in Tournament.players]
-        for tuple in new_list:
-            print(tuple)
-        return new_list
 
     def round_management():
         pass
@@ -61,12 +53,13 @@ class RoundController:
 
 # Création d'une liste aléatoire, sans répétition, de tous les joueurs inscrits
 
-    def round1_generating_matches(self):
-        random.shuffle(Tournament.player_list)
-        player_list2 = copy.deepcopy(Tournament.player_list)
+    def round1_generating_matches():
+        tournoi = Tournament.create_tournament()
+        random.shuffle(tournoi.players)
+        player_list2 = copy.deepcopy(Tournament.players)
 
-        if len(Tournament.player_list) % 2 != 0:
-            raise ValueError
+        # if len(player_list2) % 2 != 0:
+        #     raise ValueError
 
         print("Liste des matchs du 1er tour:")
 
@@ -81,7 +74,7 @@ class RoundController:
 # Création d'une liste de matchs,
 # en fonction du score à l'issue des tours précédents:
 
-    def score_based_generating_matches(self):
+    def score_based_generating_matches():
         based_score_list = sorted(Tournament.new_list,
                                   key=lambda x: x[1], reverse=True)
         print("Liste des joueurs par ordre décroissant de score: ",

@@ -1,21 +1,20 @@
 import json
 from models.player import Player
-from typing import List
+
 from datetime import datetime
 
 
 class Tournament:
-    def __init__(self, name, place, start_date, end_date,
-                 current_round_number, description,
+    def __init__(self, name, place, start_date, end_date, players=[],
                  number_of_round=4):
         self.name = name
         self.place = place
         self.start_date = start_date
         self.end_date = end_date
-        self.current_round_number = current_round_number
-        self.players = List[Player] = []
+        self.current_round_number = int
+        self.players = players
         self.number_of_round = number_of_round
-        self.description = description
+        self.description = str
 
     def __str__(self):
         return f"Bienvenue au tournoi {self.name}, a {self.place}"
@@ -74,20 +73,12 @@ class Match:
         return f"({self.player1[0]} vs {self.player2[0]})"
 
 
-player1_name = input("Nom du joueur: ")
-player1_score = float(input("Score actuel du joueur 1: "))
-player2_name = input("Nom du joueur: ")
-player2_score = float(input("Score actuel du joueur 2: "))
-player1 = [player1_name, player1_score]
-player2 = [player2_name, player2_score]
-match = Match(player1, player2)
+# player1_name = input("Nom du joueur: ")
+# player1_score = float(input("Score actuel du joueur 1: "))
+# player2_name = input("Nom du joueur: ")
+# player2_score = float(input("Score actuel du joueur 2: "))
+# player1 = [player1_name, player1_score]
+# player2 = [player2_name, player2_score]
+# match = Match(player1, player2)
 
-print(match)
-
-Match.match_progress(player1, player2)
-
-# for n in range(0, len(player_list)):
-#     print(player_list[n], scores_list[n])
-
-
-# match = ([joueur1, score_joueur1], [joueur2, score_joueur2])
+# print(match)
