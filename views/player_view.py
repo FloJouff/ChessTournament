@@ -13,14 +13,17 @@ class PlayerView:
     def get_player_infos(self):
         print("Veuillez rentrer les informations du joueur: ")
         name = input("Nom: ")
-        surname = input("Prénom: ")
+        first_name = input("Prénom: ")
         gender = input("Sexe: ")
         date_of_birth = input("Date de naissance: ")
-        return (name, surname, gender, date_of_birth)
+        return {"name": name, "first_name": first_name, "gender": gender,
+                "date_of_birth": date_of_birth}
 
     def menu_player(self):
-        print("--------------------Menu Player--------------------")
-        print("1. Pour Ajouter un joueur")
-        print("2. Pour lister tous les joueurs")
-        print("0. Quitter")
+        print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print("----------------  MENU DES JOUEURS  ---------------")
+        print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print("1 --> Pour Ajouter un joueur")
+        print("2 --> Pour afficher tous les joueurs")
+        print("0 --> Quitter")
         return input("Votre choix: ")

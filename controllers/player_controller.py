@@ -13,9 +13,9 @@ class PlayerController:
             if choix == "1":
                 data = self.playerview.get_player_infos()
                 print(data)
-                player = Player(data[0], data[1],
-                                data[2],
-                                data[3])
+                player = Player(data["name"], data["first_name"],
+                                data["gender"],
+                                data["date_of_birth"])
                 player.save()
             elif choix == "2":
                 players = Player.load_all_players()
