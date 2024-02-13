@@ -20,7 +20,8 @@ class Tournament:
     def to_dict(self):
         return {"name": self.name, "place": self.place,
                 "start_date": self.start_date, "end_date": self.end_date,
-                "nombre_de_tour": self.number_of_round}
+                "nombre_de_tour": self.number_of_round,
+                "description": self.description}
 
     def create_tournament(self):
         with open("data/tournaments.json", "r") as f:
@@ -29,6 +30,14 @@ class Tournament:
         data.append(tournament_data)
         with open("data/tournaments.json", "w") as f:
             json.dump(data, f, indent=4)
+
+    def generate_list_of_player():
+        with open("data/player_data.json", "r") as f:
+            data = json.load(f)
+        player_list = [[item['name'], 0.0]
+                       for item in data]
+        print(player_list)
+        return player_list
 
 
 class Round:

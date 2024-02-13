@@ -15,7 +15,7 @@ class Player:
         return f"Nom et prénom du joueur: {self.name}, {self.first_name}"
 
     def __repr__(self):
-        return self.name, self.first_name
+        return str(self)
 
     def to_dict(self):
         return {"name": self.name, "first_name": self.first_name,
@@ -32,11 +32,8 @@ class Player:
     def load_all_players():
         player_list = []
         with open("data/player_data.json", "r") as f:
-            # for line in f:
-            #     player_list.append(json.loads(line))
             data = json.load(f)
-            # c une liste de dictionnaire de player
-            # list de objet player
+
             for player_dict in data:
                 p = Player(player_dict["name"], player_dict["first_name"],
                            player_dict["gender"], player_dict["date_of_birth"])

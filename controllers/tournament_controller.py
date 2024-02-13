@@ -2,6 +2,7 @@ from views.tournament_view import TournamentView, RoundView, MatchView
 from models.tournament import Tournament, Round
 import random
 import copy
+import json
 
 
 class TournamentController:
@@ -24,13 +25,11 @@ class TournamentController:
                 )
                 tournoi.create_tournament()
             elif choix == "2":
-                TournamentView.register_player()
+                Tournament.generate_list_of_player()
             elif choix == "3":
-                pass
-            elif choix == "4":
                 round = RoundController()
                 round.run_round()
-            elif choix == "5":
+            elif choix == "4":
                 data["description"] = input(
                     "Veuillez rentrer une description pour ce tournoi: "
                 )
@@ -61,15 +60,13 @@ class RoundController:
             elif choix == "2":
                 print(list_of_match)
                 for match in list_of_match:
-                    print("--------------------------------------")
+                    print("-------------------------------------------")
                     player1 = match[0]
-                    print("le joueur 1 est : ", player1)
+                    print("Nom et score du joueur 1: ", player1)
                     player2 = match[1]
-                    print("le joueur 2 est : ", player2)
+                    print("nom et score du joueur 2: ", player2)
                     MatchView.afficher_match(match[0], match[1])
                     MatchController.match_progress(player1, player2)
-            elif choix == "2":
-                pass
             elif choix == "3":
                 Round.round_closure()
             elif choix == "0":
@@ -79,49 +76,77 @@ class RoundController:
     # Création d'une liste aléatoire, sans répétition, de tous les joueurs inscrits
 
     def round1_generating_matches():
-        random.shuffle(TournamentView.register_player())
-        player_list2 = copy.deepcopy(TournamentView.register_player())
+        player_list = Tournament.generate_list_of_player()
+        player_list2 = copy.deepcopy(player_list)
+        random.shuffle(player_list2)
 
         if len(player_list2) % 2 != 0:
-            raise ValueError
+            print(f"le Joueur {player_list2[-1]} ne pourra pas réaliser de match,
+                  car il y a un nombre impaire de participants,
+                  il est automatiquement qualifié pour le tour suivant")
 
-        print("Liste des matchs du 1er tour:")
+            print("Liste des matchs du 1er tour:")
 
-        list_of_match = [
-            (player_list2[i], player_list2[i + 1])
-            for i in range(0, len(player_list2), 2)
-        ]
-        for paire in list_of_match:
-            player_list2.remove(paire[0])
-            player_list2.remove(paire[1])
+            list_of_match = [
+                (player_list2[i], player_list2[i + 1])
+                for i in range(0, len(player_list2)-1, 2)
+            ]
+            for paire in list_of_match:
+                player_list2.remove(paire[0])
+                player_list2.remove(paire[1])
 
-        print(list_of_match)
-        return list_of_match
+            return list_of_match
+        else:
+            print("Liste des matchs du 1er tour:")
+
+            list_of_match = [
+                (player_list2[i], player_list2[i + 1])
+                for i in range(0, len(player_list2), 2)
+            ]
+            for paire in list_of_match:
+                player_list2.remove(paire[0])
+                player_list2.remove(paire[1])
+
+            return list_of_match
 
     # Création d'une liste de matchs,
     # en fonction du score à l'issue des tours précédents:
 
     def score_based_generating_matches():
-        based_score_list = sorted(Tournament.new_list, key=lambda x: x[1], reverse=True)
-        print("Liste des joueurs par ordre décroissant de score: ", based_score_list)
+        based_score_list = sorted(Tournament.generate_list_of_player(),
+                                  key=lambda x: x[1], reverse=True)   
+        # je dois utiliser la liste contenant les scores à l'issu du tour précédent
+        print("Liste des joueurs par ordre décroissant de score: ",
+              based_score_list)
         for nom, score in based_score_list:
             print(nom, score)
 
         if len(based_score_list) % 2 != 0:
-            raise ValueError
+            print(f"le Joueur {based_score_list[0]} ne pourra pas réaliser de match, car il y a un nombre impaire de participants, il est automatiquement qualifié pour le tour suivant")
 
-        print("Liste des matchs du tour:")
+            print("Liste des matchs du tour:")
 
-        list_of_match = [
-            (based_score_list[i], based_score_list[i + 1])
-            for i in range(0, len(based_score_list), 2)
-        ]
-        for paire in list_of_match:
-            based_score_list.remove(paire[0])
-            based_score_list.remove(paire[1])
+            list_of_match = [
+                (based_score_list[i], based_score_list[i + 1])
+                for i in range(1, len(based_score_list), 2)
+            ]
+            for paire in list_of_match:
+                based_score_list.remove(paire[0])
+                based_score_list.remove(paire[1])
 
-        print(list_of_match)
-        return list_of_match
+            return list_of_match
+        else:
+            print("Liste des matchs du tour:")
+
+            list_of_match = [
+                (based_score_list[i], based_score_list[i + 1])
+                for i in range(0, len(based_score_list), 2)
+            ]
+            for paire in list_of_match:
+                based_score_list.remove(paire[0])
+                based_score_list.remove(paire[1])
+
+            return list_of_match
 
 
 class MatchController:
@@ -132,15 +157,16 @@ class MatchController:
         match_result = random.randint(0, 2)
         if match_result == 0:
             print("Match nul")
-            player1[1] += float(0.5)
-            player2[1] += float(0.5)
+            player1[1] += 0.5
+            player2[1] += 0.5
             print(f"Score de {player1[0]}: ", player1[1])
             print(f"Score de {player2[0]}: ", player2[1])
         elif match_result == 1:
             print(f"Victoire de {player1[0]}")
-            player1[1] += float(1)
+            player1[1] += 1.0
             print(f"Score de {player1[0]}: ", player1[1])
         else:
             print(f"Victoire de {player2[0]}")
-            player2[1] += float(1)
+            player2[1] += 1.0
             print(f"Score de {player2[0]}: ", player2[1])
+        return player1[1], player2[1]
