@@ -1,6 +1,5 @@
 import json
 from datetime import datetime
-from models.player import Player
 
 
 class Tournament:
@@ -9,10 +8,10 @@ class Tournament:
         self.place = place
         self.start_date = start_date
         self.end_date = end_date
-        self.current_round_number = int
-        self.players = [Player]
+        self.current_round_number = 1
+        self.players = []
         self.number_of_round = number_of_round
-        self.description = str
+        self.description = ""
 
     def __str__(self):
         return f"Bienvenue au tournoi {self.name}, a {self.place}"
@@ -21,7 +20,7 @@ class Tournament:
         return {"name": self.name, "place": self.place,
                 "start_date": self.start_date, "end_date": self.end_date,
                 "nombre_de_tour": self.number_of_round,
-                "description": self.description}
+                "players": self.players}
 
     def create_tournament(self):
         with open("data/tournaments.json", "r") as f:
@@ -30,14 +29,6 @@ class Tournament:
         data.append(tournament_data)
         with open("data/tournaments.json", "w") as f:
             json.dump(data, f, indent=4)
-
-    def generate_list_of_player():
-        with open("data/player_data.json", "r") as f:
-            data = json.load(f)
-        player_list = [[item['name'], 0.0]
-                       for item in data]
-        print(player_list)
-        return player_list
 
 
 class Round:

@@ -14,6 +14,12 @@ class ReportController:
                 pass
             elif choix == "2":
                 pass
+            elif choix == "3":
+                pass
+            elif choix == "4":
+                pass
+            elif choix == "5":
+                pass
             elif choix == "0":
                 print("Quitter")
                 break

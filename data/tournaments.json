@@ -1,50 +1,95 @@
 [
     {
-        "name": "Chess Tour-nament",
+        "name": "Tournoi",
         "place": "Tour",
-        "date de début": "12/10/2022",
-        "date de fin": "14/10/2022",
-        "description":"",
-        "liste des joueurs enregistrés": [],
-        "rounds": [
-            {"Name" : "Round1",
-            "date": "12/10/2022",
-        "matches": [
-            ["idjoueur1", "1"],["idjoueur2", "0"],
-            ["id joueur3", "1"],["idjoueur4","0"]
+        "start_date": "12/05/2022",
+        "end_date": "13/05/2022",
+        "nombre_de_tour": "5",
+        "players": [
+            "80975b7b-7ea9-40f3-91ef-28ab0c67b8de",
+            "80975b7b-7ea9-40f3-91ef-28ab0c67b8de"
         ]
-        },
-        {"Name" : "Round2",
-        "date": "12/10/2022",
-        "matches": [
-            ["idjoueur1", "2"],["idjoueur2", "0"],
-            ["id joueur3", "2"],["idjoueur4","0"]
-    ]
-    }
-        ] 
     },
     {
-        "name": "Tournoi d'Orléans",
-        "place": "Orléan",
-        "date de début": "12/01/2023",
-        "date de fin": "14/01/2023",
-        "description":"",
-        "liste des joueurs enregistrés": [], 
-        "rounds": [
-            {"Name" : "Round1",
-            "date": "12/10/2022",
-        "matches" :[
-            ["idjoueur1", "1"],["idjoueur2", "0"],
-            ["id joueur3", "1"],["idjoueur4","0"]
+        "name": "Tournoi",
+        "place": "Tour",
+        "start_date": "12/04/2022",
+        "end_date": "13/04/2022",
+        "nombre_de_tour": "4",
+        "players": [
+            "3aa43514-af26-4d5c-be7d-34a52abb0afb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0afb"
         ]
-        },
-        {"Name" : "Round2",
-        "date": "12/10/2022",
-        "matches" :[
-            ["idjoueur1", "2"],["idjoueur2", "0"],
-            ["id joueur3", "2"],["idjoueur4","0"]
-    ]
-    }
-        ] 
+    },
+    {
+        "name": "Tournoi",
+        "place": "tour",
+        "start_date": "12/05/2022",
+        "end_date": "13/05/2022",
+        "nombre_de_tour": "4",
+        "players": [
+            "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0afb"
+        ]
+    },
+    {
+        "name": "Tournoi",
+        "place": "Tour",
+        "start_date": "12/05/2022",
+        "end_date": "13/05/2022",
+        "nombre_de_tour": "4",
+        "players": [
+            "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0afb",
+            "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+            "cb50536b-94e6-4630-989b-0b2ab806a6ed"
+        ]
+    },
+    {
+        "name": "Tournoi",
+        "place": "Tour",
+        "start_date": "12/05/2022",
+        "end_date": "13/05/2022",
+        "nombre_de_tour": "4",
+        "players": [
+            "Danvers",
+            "Maximoff",
+            "Stark",
+            "Rogers",
+            "Parker",
+            "Xavier"
+        ]
+    },
+    {
+        "name": "Tournoi",
+        "place": "Tour",
+        "start_date": "12/05/2022",
+        "end_date": "13/05/2022",
+        "nombre_de_tour": "4",
+        "players": [
+            "Danvers",
+            "Maximoff",
+            "Stark",
+            "Rogers",
+            "Parker",
+            "Xavier"
+        ]
+    },
+    {
+        "name": "Tournoi",
+        "place": "Tour",
+        "start_date": "12/05/2022",
+        "end_date": "13/05/2022",
+        "nombre_de_tour": "4",
+        "players": [
+            "Danvers",
+            "Maximoff",
+            "Rogers",
+            "Parker",
+            "Xavier",
+            "Stark"
+        ]
     }
 ]

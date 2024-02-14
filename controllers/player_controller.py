@@ -15,7 +15,8 @@ class PlayerController:
                 print(data)
                 player = Player(data["name"], data["first_name"],
                                 data["gender"],
-                                data["date_of_birth"])
+                                data["date_of_birth"],
+                                data["ine"])
                 player.save()
             elif choix == "2":
                 players = Player.load_all_players()
