@@ -12,4 +12,5 @@ class MainView:
         print("2 --> Pour accéder au menu des tournoi")
         print("3 --> Pour accéder au menu des rapports")
         print("0 --> Pour Quitter")
+        print("")
         return input("Votre choix: ")

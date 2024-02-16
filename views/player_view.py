@@ -80,4 +80,5 @@ class PlayerView:
         print("1 --> Pour Ajouter un joueur")
         print("2 --> Pour afficher tous les joueurs")
         print("0 --> Quitter")
+        print("")
         return input("Votre choix: ")

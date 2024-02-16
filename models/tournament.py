@@ -8,7 +8,6 @@ class Tournament:
         self.place = place
         self.start_date = start_date
         self.end_date = end_date
-        self.current_round_number = 1
         self.players = []
         self.number_of_round = number_of_round
         self.description = ""
@@ -20,7 +19,7 @@ class Tournament:
         return {"name": self.name, "place": self.place,
                 "start_date": self.start_date, "end_date": self.end_date,
                 "nombre_de_tour": self.number_of_round,
-                "players": self.players}
+                "players": self.players, "description": self.description}
 
     def create_tournament(self):
         with open("data/tournaments.json", "r") as f:
@@ -41,14 +40,18 @@ class Round:
     def creation_round(self):
         print("Début d'un nouveau tour")
         start_time_date = datetime.now()
+        print("")
         print(f"Heure de début du tour {self.round_number}: ", start_time_date)
+        print("")
 
 # incription de l'heure du fin du tour.
 
-    def round_closure():
+    def round_closure(self):
         print("Fin du tour")
         round_end_time = datetime.now()
-        print("le tour en cours s'est terminé à :", round_end_time)
+        print("")
+        print("Le tour en cours s'est terminé à :", round_end_time)
+        print("")
 
 
 class Match:

@@ -25,7 +25,7 @@ class TournamentView:
         number_of_round = input("Nombre de tour pour ce tournoi: ")
         return {"name": name, "place": place,
                 "start_date": start_date, "end_date": end_date,
-                "nombre_de_tour": number_of_round}
+                "nombre_de_tour": number_of_round, "description": ""}
 
     def menu_tournoi(self):
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
@@ -34,13 +34,27 @@ class TournamentView:
         print("1 --> Pour enregistrer les informations d'un tournoi ")
         print("2 --> Pour afficher la liste des participants ")
         print("3 --> Pour démarrer un nouveau tour et générer les matchs ")
-        print("4 --> Pour résoudre aléatoirement les matchs du tour ")
-        print("5 --> Pour cloturer un tour ")
-        print("6 --> Pour saisir une description ")
+        print("4 --> Pour saisir les résultats des matchs du tour 1")
+        print("5 --> Pour saisir les résultats des matchs des autres tours")
+        print("6 --> Pour cloturer un tour ")
+        print("7 --> Pour saisir une description ")
         print("0 --> Quitter")
+        print("")
         return input("Votre choix: ")
 
 
 class MatchView:
     def afficher_match(player1, player2):
         print(player1, " vs ", player2)
+
+    def match_results_entry(player1, player2):
+        result = input(f"Veuillez indiquer le resultat du match entre {player1[0]} et {player2[0]} (J1, J2 ou nul): ")
+        if result == "J1":
+            player1[1] = player1[1] + 1
+        elif result == "J2":
+            player2[1] = player2[1] + 1
+        elif result == "nul":
+            player1[1] = player1[1] + 0.5
+            player2[1] = player2[1] + 0.5
+        else:
+            print("Saisie incorrecte")

@@ -15,7 +15,7 @@ class Player:
         self.score = 0.0
 
     def __str__(self):
-        return f"Nom et prénom du joueur: {self.name}, {self.first_name}"
+        return f"{self.name} {self.first_name}"
 
     def __repr__(self):
         return str(self)
@@ -56,7 +56,7 @@ class Player:
                                     player_dict["first_name"],
                                     player_dict["gender"],
                                     player_dict["date_of_birth"],
-                                    player_dict["id"], 
+                                    player_dict["id"],
                                     player_dict["ine"])
                     break
         return player
