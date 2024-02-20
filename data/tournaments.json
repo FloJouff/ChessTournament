@@ -1,31 +1,10 @@
 [
     {
-        "name": "Tournoi",
-        "place": "Tour",
-        "start_date": "12/05/2022",
-        "end_date": "13/05/2022",
-        "nombre_de_tour": "5",
-        "players": [
-            "80975b7b-7ea9-40f3-91ef-28ab0c67b8de",
-            "80975b7b-7ea9-40f3-91ef-28ab0c67b8de"
-        ]
-    },
-    {
-        "name": "Tournoi",
-        "place": "Tour",
-        "start_date": "12/04/2022",
-        "end_date": "13/04/2022",
-        "nombre_de_tour": "4",
-        "players": [
-            "3aa43514-af26-4d5c-be7d-34a52abb0afb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0afb"
-        ]
-    },
-    {
-        "name": "d",
-        "place": "d",
-        "start_date": "01/01/2022",
-        "end_date": "01/01/2022",
+        "id": "564ab2c7-1adb-4964-8b65-027d24772669",
+        "name": "truc",
+        "place": "ici",
+        "start_date": "11/01/2022",
+        "end_date": "01/02/2022",
         "nombre_de_tour": "4",
         "players": [
             "Danvers",
@@ -33,40 +12,9 @@
             "Stark",
             "Rogers",
             "Parker",
-            "Xavier"
+            "Jouff"
         ],
-        "description": ""
-    },
-    {
-        "name": "g",
-        "place": "g",
-        "start_date": "01/01/2022",
-        "end_date": "01/01/2022",
-        "nombre_de_tour": "4",
-        "players": [
-            "Danvers",
-            "Maximoff",
-            "Stark",
-            "Rogers",
-            "Parker",
-            "Xavier"
-        ],
-        "description": ""
-    },
-    {
-        "name": "f",
-        "place": "f",
-        "start_date": "01/01/2022",
-        "end_date": "01/01/2022",
-        "nombre_de_tour": "4",
-        "players": [
-            "Danvers",
-            "Maximoff",
-            "Stark",
-            "Rogers",
-            "Parker",
-            "Xavier"
-        ],
-        "description": ""
+        "description": "",
+        "Tours": []
     }
 ]

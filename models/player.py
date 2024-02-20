@@ -1,6 +1,5 @@
 import json
 import uuid
-# from serializer import Serializer
 
 
 class Player:
@@ -52,6 +51,21 @@ class Player:
             data = json.load(f)
             for player_dict in data:
                 if player_dict['id'] == id:
+                    player = Player(player_dict["name"],
+                                    player_dict["first_name"],
+                                    player_dict["gender"],
+                                    player_dict["date_of_birth"],
+                                    player_dict["id"],
+                                    player_dict["ine"])
+                    break
+        return player
+
+    def load_player_by_ine(ine):
+        player = None
+        with open("data/player_data.json", "r") as f:
+            data = json.load(f)
+            for player_dict in data:
+                if player_dict['ine'] == ine:
                     player = Player(player_dict["name"],
                                     player_dict["first_name"],
                                     player_dict["gender"],

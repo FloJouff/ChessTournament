@@ -1,5 +1,6 @@
 from models.tournament import Tournament
 from views.player_view import PlayerView
+import json
 
 
 class TournamentView:
@@ -7,7 +8,7 @@ class TournamentView:
         self.tournament = Tournament("Chess Tour-nament", "Tour", "12/10/2022",
                                      "14/10/2022")
 
-    def afficher_tournoi(self):
+    def display_tournament(self):
         print(Tournament.name, Tournament.place)
 
     def get_tournament_infos(self):
@@ -16,16 +17,26 @@ class TournamentView:
         place = input("Lieu: ")
         while True:
             start_date = input("Date de début: ")
-            if PlayerView.validation_date(start_date):
+            if PlayerView.date_validation(start_date):
                 break
         while True:
             end_date = input("Date de fin: ")
-            if PlayerView.validation_date(end_date):
+            if PlayerView.date_validation(end_date):
                 break
         number_of_round = input("Nombre de tour pour ce tournoi: ")
         return {"name": name, "place": place,
                 "start_date": start_date, "end_date": end_date,
                 "nombre_de_tour": number_of_round, "description": ""}
+
+    def get_description(self):
+        with open("data/tournaments.json", "r") as f:
+            data = json.load(f)
+        tournament_data = Tournament.to_dict()
+        data["description"] = input("Tapez votre commentaire concernant ce tournoi: ")
+        data.append(tournament_data)
+        with open("data/tournaments.json", "w") as f:
+            json.dump(data, f, indent=4)
+        print(data["description"])
 
     def menu_tournoi(self):
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
@@ -34,17 +45,16 @@ class TournamentView:
         print("1 --> Pour enregistrer les informations d'un tournoi ")
         print("2 --> Pour afficher la liste des participants ")
         print("3 --> Pour démarrer un nouveau tour et générer les matchs ")
-        print("4 --> Pour saisir les résultats des matchs du tour 1")
-        print("5 --> Pour saisir les résultats des matchs des autres tours")
-        print("6 --> Pour cloturer un tour ")
-        print("7 --> Pour saisir une description ")
-        print("0 --> Quitter")
+        print("4 --> Pour saisir les résultats des matchs du tour ")
+        print("5 --> Pour cloturer un tour ")
+        print("6 --> Pour saisir une description ")
+        print("0 --> Retour au menu précédent")
         print("")
         return input("Votre choix: ")
 
 
 class MatchView:
-    def afficher_match(player1, player2):
+    def display_match(player1, player2):
         print(player1, " vs ", player2)
 
     def match_results_entry(player1, player2):

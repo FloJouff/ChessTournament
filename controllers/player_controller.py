@@ -20,7 +20,11 @@ class PlayerController:
                 player.save()
             elif choix == "2":
                 players = Player.load_all_players()
-                self.playerview.afficher_list_players(players)
+                self.playerview.display_list_players(players)
+            elif choix == "3":
+                ine = input("Veuillez saisir l'INE du joueur recherché: ")
+                player = Player.load_player_by_ine(ine)
+                print(player)
             elif choix == "0":
                 print("Quitter")
                 break

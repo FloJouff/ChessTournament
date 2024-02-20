@@ -8,14 +8,14 @@ class PlayerView:
     def afficher_player(self):
         print(Player.name, Player.first_name, Player.score)
 
-    def afficher_list_players(self, players: [Player]):
+    def display_list_players(self, players: [Player]):
         print("Afficher tous les joueurs: ")
         i = 0
         for player in players:
             print(i, player.name, player.first_name)
             i = i + 1
 
-    def validation_ine(new_ine):
+    def ine_validation(new_ine):
         # Verification que l'INE indiqué n'existe pas déjà:
         with open("data/player_data.json", "r") as f:
             data = json.load(f)
@@ -33,7 +33,7 @@ class PlayerView:
             print("Format invalide. Utilisez 2 lettres suivies de 5 chiffres.")
             return False
 
-    def validation_date(date_str):
+    def date_validation(date_str):
         try:
             # Convertir la chaîne en objet datetime
             date_obj = datetime.strptime(date_str, "%d/%m/%Y")
@@ -59,11 +59,11 @@ class PlayerView:
         gender = input("Sexe: ")
         while True:
             date_of_birth = input("Date de naissance: (format JJ/MM/AAAA)")     
-            if PlayerView.validation_date(date_of_birth):
+            if PlayerView.date_validation(date_of_birth):
                 break
         while True:
             ine = input("indiquez votre ine: (format: 2lettres5chiffres)")
-            if PlayerView.validation_ine(ine):
+            if PlayerView.ine_validation(ine):
                 break
         return {
             "name": name,
@@ -79,6 +79,7 @@ class PlayerView:
         print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
         print("1 --> Pour Ajouter un joueur")
         print("2 --> Pour afficher tous les joueurs")
-        print("0 --> Quitter")
+        print("3 --> Rechercher un joueur par son INE :")
+        print("0 --> Retour au menu précédent")
         print("")
         return input("Votre choix: ")

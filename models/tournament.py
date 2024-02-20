@@ -1,9 +1,11 @@
 import json
 from datetime import datetime
+import uuid
 
 
 class Tournament:
-    def __init__(self, name, place, start_date, end_date, number_of_round=4):
+    def __init__(self, name, place, start_date, end_date, number_of_round=4,
+                 id=uuid.uuid4()):
         self.name = name
         self.place = place
         self.start_date = start_date
@@ -11,15 +13,19 @@ class Tournament:
         self.players = []
         self.number_of_round = number_of_round
         self.description = ""
+        self.id = id
+        self.rounds = []
 
     def __str__(self):
         return f"Bienvenue au tournoi {self.name}, a {self.place}"
 
     def to_dict(self):
-        return {"name": self.name, "place": self.place,
+        return {"id": str(self.id), "name": self.name, "place": self.place,
                 "start_date": self.start_date, "end_date": self.end_date,
                 "nombre_de_tour": self.number_of_round,
-                "players": self.players, "description": self.description}
+                "players": self.players, "description": self.description,
+                "Tours": self.rounds
+                }
 
     def create_tournament(self):
         with open("data/tournaments.json", "r") as f:

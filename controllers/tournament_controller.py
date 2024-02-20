@@ -30,7 +30,7 @@ class TournamentController:
             elif choix == "2":
                 print(tournoi.players)
             elif choix == "3":
-                round_nb = input("veuillez préciser le numéro du tour: ")
+                round_nb = input("Veuillez préciser le numéro du tour: ")
                 round = Round(round_nb)
                 round.creation_round()
                 print(f"Liste des matchs du tour {round_nb}:")
@@ -41,44 +41,42 @@ class TournamentController:
                 else:
                     matches = self.score_based_generating_matches(players_and_score)
             elif choix == "4":
-                print("Saisissez les résultats de match du tour 1")
-                players_and_score1 = self.round1_match_resolution(matches1)
+                if round_nb == "1":
+                    print("Saisissez les résultats de match du tour 1")
+                    players_and_score1 = self.round1_match_resolution(matches1)
+                else:
+                    print(f"Saisissez les résultats de match du tour {round_nb}")
+                    players_and_score = self.next_round_match_resolution(matches)
             elif choix == "5":
-                print("Saisissez les résultats de match du tour en cours")
-                players_and_score = self.next_round_match_resolution(matches)
-            elif choix == "6":
                 Round.round_closure(self)
                 print(f"Fin du tour {round_nb}")
-            elif choix == "7":
-                data["description"] = input(
-                    "Veuillez rentrer une description pour ce tournoi: "
-                )
-                print(data["description"])
+            elif choix == "6":
+                TournamentView.get_description(self)
             elif choix == "0":
                 print("Quitter")
                 break
 
     def generate_list_of_player(self, tournoi):
         players = Player.load_all_players()
-        self.playerviews.afficher_list_players(players)
+        self.playerviews.display_list_players(players)
         while (len(tournoi.players) < 6):
             choix = input("Saissez le numéro du joueur à inclure dans le tournoi: ")
             id_player = players[int(choix)].name                    # name au lieu de id, pas plus clair????
             tournoi.players.append(id_player)
         return players
 
-    def afficher_liste_participants_avec_score(self, tournoi):
+    def display_list_participants_with_score(self, tournoi):
         players = tournoi.players
         scores = {player: 0.0 for player in players}
         players_and_score = [[player, scores[player]] for player in players]
 
         return players_and_score
 
-    # Création d'une liste aléatoire, sans répétition, de tous les participants
-    # pour le premier tour uniquement
+# Création d'une liste aléatoire, sans répétition, de tous les participants
+# pour le premier tour uniquement
 
     def round1_generating_matches(self, tournoi):
-        players_and_score = self.afficher_liste_participants_avec_score(tournoi)
+        players_and_score = self.display_list_participants_with_score(tournoi)
         matches1 = []
         while len(players_and_score) >= 2:
             joueur1 = random.choice(players_and_score)
@@ -94,7 +92,7 @@ class TournamentController:
     def round1_match_resolution(self, matches1):
         for player in matches1:
             print("-------------------------------------------")
-            MatchView.afficher_match(player[0], player[1])
+            MatchView.display_match(player[0], player[1])
             MatchView.match_results_entry(player[0], player[1])
         print("")
         print("Nouvelle liste de joueurs avec les scores à jour: ")
@@ -117,8 +115,7 @@ class TournamentController:
 
         print("Liste des joueurs par ordre décroissant de score: ",
               players_and_score)
-        # for nom, score in players_and_score:
-        #     print(nom, score)
+        print("")
 
         matches = []
         for i in range(0, len(players_and_score), 2):
@@ -133,7 +130,7 @@ class TournamentController:
     def next_round_match_resolution(self, matches):
         for player in matches:
             print("-------------------------------------------")
-            MatchView.afficher_match(player[0], player[1])
+            MatchView.display_match(player[0], player[1])
             MatchView.match_results_entry(player[0], player[1])
         print("Nouvelle liste de joueurs avec les scores à jour: ")
 

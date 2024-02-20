@@ -46,5 +46,13 @@
         "date_of_birth": "24/06/1962",
         "ine": "hy58412",
         "id": "cb50536b-94e6-4630-989b-0b2ab806a6ed"
+    },
+    {
+        "id": "9b3b2a89-4579-4bfe-af39-13a811eb44cf",
+        "name": "Jouff",
+        "first_name": "Flo",
+        "gender": "M",
+        "date_of_birth": "18/05/1976",
+        "ine": "CS12456"
     }
 ]
