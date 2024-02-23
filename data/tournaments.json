@@ -1,20 +1,130 @@
 [
     {
-        "id": "564ab2c7-1adb-4964-8b65-027d24772669",
-        "name": "truc",
-        "place": "ici",
-        "start_date": "11/01/2022",
-        "end_date": "01/02/2022",
-        "nombre_de_tour": "4",
+        "id": "68ce2c93-ead2-4553-ba3c-d88e974790d7",
+        "name": "Tour'noi",
+        "place": "Tour",
+        "start_date": "01/02/2022",
+        "end_date": "02/02/2022",
+        "number_of_round": "4",
         "players": [
-            "Danvers",
-            "Maximoff",
-            "Stark",
-            "Rogers",
-            "Parker",
-            "Jouff"
+            "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+            "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+            "d016f9ab-3ae7-4981-b536-98925697caaa",
+            "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+            "3aa43514-af26-4d5c-be7d-34a52abb0agb"
         ],
         "description": "",
-        "Tours": []
+        "tournament_status": "in progress",
+        "rounds": [
+            {
+                "round_number": 1,
+                "round_matches": [],
+                "round_start_time": "2024-02-23 14:52:14.721639"
+            },
+            {
+                "round_number": 2,
+                "round_matches": [],
+                "round_start_time": "2024-02-23 14:52:14.740975"
+            },
+            {
+                "round_number": 3,
+                "round_matches": [],
+                "round_start_time": "2024-02-23 14:52:14.755350"
+            },
+            {
+                "round_number": 4,
+                "round_matches": [],
+                "round_start_time": "2024-02-23 14:52:14.766378"
+            }
+        ]
+    },
+    {
+        "id": "dba43f01-1d15-4005-90e2-52acb164c2b2",
+        "name": "Truc",
+        "place": "ici",
+        "start_date": "12/04/2022",
+        "end_date": "12/05/2023",
+        "number_of_round": "4",
+        "players": [
+            "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+            "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+            "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+            "9b3b2a89-4579-4bfe-af39-13a811eb44cf"
+        ],
+        "description": "",
+        "Rounds": []
+    },
+    {
+        "id": "5f7da989-6e63-4cdf-a11c-13fee58b5f5c",
+        "name": "machin",
+        "place": "ailleurs",
+        "start_date": "03/03/2023",
+        "end_date": "03/03/2023",
+        "number_of_round": "4",
+        "players": [
+            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+            "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+            "9b3b2a89-4579-4bfe-af39-13a811eb44cf",
+            "d016f9ab-3ae7-4981-b536-98925697caaa"
+        ],
+        "description": "",
+        "Rounds": []
+    },
+    {
+        "id": "fe9fd40d-8e89-432d-a7fd-82ee0dc18875",
+        "name": ",ujy",
+        "place": ",h",
+        "start_date": "01/01/2000",
+        "end_date": "01/01/2000",
+        "number_of_round": "4",
+        "players": [
+            "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+            "cb50536b-94e6-4630-989b-0b2ab806a6ed"
+        ],
+        "description": "",
+        "Rounds": []
+    },
+    {
+        "id": "de02bf8b-b4d6-490a-834c-c73be88886cf",
+        "name": "htre",
+        "place": "tr",
+        "start_date": "01/01/2000",
+        "end_date": "01/01/2000",
+        "number_of_round": "4",
+        "players": [
+            "d016f9ab-3ae7-4981-b536-98925697caaa",
+            "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+            "3aa43514-af26-4d5c-be7d-34a52abb0afb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+            "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+            "3aa43514-af26-4d5c-be7d-34a52abb0acb"
+        ],
+        "description": "",
+        "Rounds": []
+    },
+    {
+        "id": "4c00201c-8802-47ff-aa75-57a94f9c1777",
+        "name": "nbr",
+        "place": "vtr",
+        "start_date": "05/05/2000",
+        "end_date": "05/06/2001",
+        "number_of_round": "4",
+        "players": [
+            "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+            "3aa43514-af26-4d5c-be7d-34a52abb0afb",
+            "9b3b2a89-4579-4bfe-af39-13a811eb44cf",
+            "cb50536b-94e6-4630-989b-0b2ab806a6ed"
+        ],
+        "description": "",
+        "Rounds": []
     }
 ]

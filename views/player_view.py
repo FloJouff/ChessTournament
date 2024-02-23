@@ -15,24 +15,6 @@ class PlayerView:
             print(i, player.name, player.first_name)
             i = i + 1
 
-    def ine_validation(new_ine):
-        # Verification que l'INE indiqué n'existe pas déjà:
-        with open("data/player_data.json", "r") as f:
-            data = json.load(f)
-
-            if any(element.get('ine') == new_ine for element in data):
-                print(f"Cet INE {new_ine} existe déjà dans le fichier json")
-                return False
-
-        # Vérification que le format de l'INE est correct:
-        pattern = re.compile(r"^[A-Za-z]{2}\d{5}$")
-
-        if pattern.match(new_ine):
-            return True
-        else:
-            print("Format invalide. Utilisez 2 lettres suivies de 5 chiffres.")
-            return False
-
     def date_validation(date_str):
         try:
             # Convertir la chaîne en objet datetime
@@ -63,7 +45,7 @@ class PlayerView:
                 break
         while True:
             ine = input("indiquez votre ine: (format: 2lettres5chiffres)")
-            if PlayerView.ine_validation(ine):
+            if Player.ine_validation(ine):
                 break
         return {
             "name": name,

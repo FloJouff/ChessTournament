@@ -22,36 +22,37 @@ class TournamentController:
                     data["place"],
                     data["start_date"],
                     data["end_date"],
-                    data["nombre_de_tour"]
+                    data["description"],
+                    data["number_of_round"]
                 )
                 print("Ajouter les joueurs au tournoi")
                 self.generate_list_of_player(tournoi)
                 tournoi.create_tournament()
             elif choix == "2":
-                print(tournoi.players)
+                liste = Tournament.display_tournaments()
+                print(liste)
             elif choix == "3":
-                round_nb = input("Veuillez préciser le numéro du tour: ")
-                round = Round(round_nb)
-                round.creation_round()
-                print(f"Liste des matchs du tour {round_nb}:")
-                if round_nb == "1":
-                    matches1 = self.round1_generating_matches(tournoi)
-                elif round_nb == "2":
-                    matches = self.score_based_generating_matches(players_and_score1)
-                else:
-                    matches = self.score_based_generating_matches(players_and_score)
+                id = input("Veuillez saisir l'id du tournoi souhaité: ")
+                tournoi = Tournament.load_tournament_by_id(id)
+                print(tournoi)
             elif choix == "4":
-                if round_nb == "1":
-                    print("Saisissez les résultats de match du tour 1")
-                    players_and_score1 = self.round1_match_resolution(matches1)
-                else:
-                    print(f"Saisissez les résultats de match du tour {round_nb}")
-                    players_and_score = self.next_round_match_resolution(matches)
+                matches = self.round1_generating_matches(tournoi)
+                for i in range(1, int(tournoi.number_of_round)+1):
+                    round_start = str(Round.creation_round())
+                    round = Round(i, matches, round_start)
+                    print(f"Liste des matchs du tour {i}:")
+                    print("")
+                    round.save_round(tournoi.id)
+                    print(matches)
+                    print(f"Saisissez les résultats de match du tour{i}")
+                    players_and_score1 = self.match_resolution(matches)
+                    matches = self.score_based_generating_matches(players_and_score1)
+                    round.round_closure()
+                    print(f"Fin du tour {i}")
+                    print("")             
+                print(f"le vainqueur du tournoi {tournoi.name} est {players_and_score1[0]}")
             elif choix == "5":
-                Round.round_closure(self)
-                print(f"Fin du tour {round_nb}")
-            elif choix == "6":
-                TournamentView.get_description(self)
+                pass
             elif choix == "0":
                 print("Quitter")
                 break
@@ -59,16 +60,19 @@ class TournamentController:
     def generate_list_of_player(self, tournoi):
         players = Player.load_all_players()
         self.playerviews.display_list_players(players)
-        while (len(tournoi.players) < 6):
+        nb_participants = input("Indiquez le nombre de participants à ce tournoi: ")
+        while (len(tournoi.players) < int(nb_participants)):
             choix = input("Saissez le numéro du joueur à inclure dans le tournoi: ")
-            id_player = players[int(choix)].name                    # name au lieu de id, pas plus clair????
+            id_player = players[int(choix)].id
             tournoi.players.append(id_player)
         return players
 
     def display_list_participants_with_score(self, tournoi):
         players = tournoi.players
-        scores = {player: 0.0 for player in players}
-        players_and_score = [[player, scores[player]] for player in players]
+        players_name = [Player.load_player_by_id(player) for player in players]
+
+        scores = {player: 0.0 for player in players_name}
+        players_and_score = [[player, scores[player]] for player in players_name]
 
         return players_and_score
 
@@ -89,8 +93,8 @@ class TournamentController:
 
         return matches1
 
-    def round1_match_resolution(self, matches1):
-        for player in matches1:
+    def match_resolution(self, matches):
+        for player in matches:
             print("-------------------------------------------")
             MatchView.display_match(player[0], player[1])
             MatchView.match_results_entry(player[0], player[1])
@@ -99,7 +103,7 @@ class TournamentController:
         print("")
 
         players_and_score = []
-        for player in matches1:
+        for player in matches:
             for joueur in player:
                 players_and_score.append(joueur)
                 print(joueur)
@@ -112,7 +116,6 @@ class TournamentController:
         return players_and_score
 
     def score_based_generating_matches(self, players_and_score):
-
         print("Liste des joueurs par ordre décroissant de score: ",
               players_and_score)
         print("")
@@ -122,23 +125,8 @@ class TournamentController:
             if i + 1 < len(players_and_score):
                 joueur1 = players_and_score[i]
                 joueur2 = players_and_score[i + 1]
+                # si [joueur[i], joueur[i+1]] existe déjà alors créer [joueur[i], joueur[i+2]]
             matches.append([joueur1, joueur2])
         print(matches)
 
         return matches
-
-    def next_round_match_resolution(self, matches):
-        for player in matches:
-            print("-------------------------------------------")
-            MatchView.display_match(player[0], player[1])
-            MatchView.match_results_entry(player[0], player[1])
-        print("Nouvelle liste de joueurs avec les scores à jour: ")
-
-        players_and_score = []
-        for player in matches:
-            for joueur in player:
-                players_and_score.append(joueur)
-                print(joueur)
-        players_and_score.sort(key=lambda x: x[1], reverse=True)
-        print(players_and_score)
-        return players_and_score

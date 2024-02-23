@@ -1,15 +1,14 @@
 from models.tournament import Tournament
 from views.player_view import PlayerView
-import json
 
 
 class TournamentView:
     def __init__(self) -> None:
         self.tournament = Tournament("Chess Tour-nament", "Tour", "12/10/2022",
-                                     "14/10/2022")
+                                     "14/10/2022", "")
 
     def display_tournament(self):
-        print(Tournament.name, Tournament.place)
+        print(self.name, self.place)
 
     def get_tournament_infos(self):
         print("Rentrer les informations du tournoi ")
@@ -23,31 +22,21 @@ class TournamentView:
             end_date = input("Date de fin: ")
             if PlayerView.date_validation(end_date):
                 break
+        description = input("Tapez votre commentaire concernant ce tournoi: ")
         number_of_round = input("Nombre de tour pour ce tournoi: ")
         return {"name": name, "place": place,
                 "start_date": start_date, "end_date": end_date,
-                "nombre_de_tour": number_of_round, "description": ""}
-
-    def get_description(self):
-        with open("data/tournaments.json", "r") as f:
-            data = json.load(f)
-        tournament_data = Tournament.to_dict()
-        data["description"] = input("Tapez votre commentaire concernant ce tournoi: ")
-        data.append(tournament_data)
-        with open("data/tournaments.json", "w") as f:
-            json.dump(data, f, indent=4)
-        print(data["description"])
+                "number_of_round": number_of_round, "description": description}
 
     def menu_tournoi(self):
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
         print("---------------  MENU DES TOURNOIS  ----------------")
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        print("1 --> Pour enregistrer les informations d'un tournoi ")
-        print("2 --> Pour afficher la liste des participants ")
-        print("3 --> Pour démarrer un nouveau tour et générer les matchs ")
-        print("4 --> Pour saisir les résultats des matchs du tour ")
-        print("5 --> Pour cloturer un tour ")
-        print("6 --> Pour saisir une description ")
+        print("1 --> Pour enregistrer les informations d'un nouveau tournoi ")
+        print("2 --> Pour afficher la liste des tournois ")
+        print("3 --> Pour charger les données d'un tournoi enregistré: ")
+        print("4 --> Pour lancer un nouveau tournoi ")
+        print("5 --> Pour reprendre un tournoi en cours. ")
         print("0 --> Retour au menu précédent")
         print("")
         return input("Votre choix: ")

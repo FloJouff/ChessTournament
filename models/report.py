@@ -65,10 +65,10 @@ class Report:
                     break
         return tournament
 
-    def save_matches():
-        with open("data/tournaments.json", "r") as f:
-            data = json.load(f)
-        tournament_data = Tournament.to_dict()
-        data.append(tournament_data)
-        with open("data/tournaments.json", "w") as f:
-            json.dump(data, f, indent=4)
+    # def save_matches():
+    #     with open("data/tournaments.json", "r") as f:
+    #         data = json.load(f)
+    #     tournament_data = Tournament.to_dict()
+    #     data.append(tournament_data)
+    #     with open("data/tournaments.json", "w") as f:
+    #         json.dump(data, f, indent=4)

@@ -1,7 +1,6 @@
 from views.report_view import ReportView
 from models.report import Report
 from models.player import Player
-from models.tournament import Tournament
 import json
 """ Gère la génération des rapports demandés"""
 
