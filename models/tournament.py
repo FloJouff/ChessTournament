@@ -15,6 +15,7 @@ class Tournament:
         self.id = id
         self.players = []
         self.rounds = []
+        self.status = "tostart"
 
     def __str__(self):
         return f"Bienvenue au tournoi {self.name}, a {self.place}"
@@ -24,7 +25,8 @@ class Tournament:
                 "start_date": self.start_date, "end_date": self.end_date,
                 "number_of_round": self.number_of_round,
                 "players": self.players, "description": self.description,
-                "Rounds": [round.to_dict() for round in self.rounds]
+                "rounds": [round.to_dict() for round in self.rounds],
+                "status": self.status
                 }
 
     def create_tournament(self):
@@ -35,11 +37,13 @@ class Tournament:
         with open("data/tournaments.json", "w") as f:
             json.dump(data, f, indent=4)
 
+    @staticmethod
     def display_tournaments():
         with open("data/tournaments.json", "r") as f:
             data = json.loads(f.read())
             print(data)
 
+    @staticmethod
     def load_tournament_by_id(id):
         tournament = None
         with open("data/tournaments.json", "r") as f:
@@ -52,26 +56,61 @@ class Tournament:
                                             tournament_dict["end_date"],
                                             tournament_dict["number_of_round"],
                                             tournament_dict["players"],
-                                            tournament_dict["id"],)
+                                            tournament_dict["id"])
                     break
         return tournament
 
+    @staticmethod
+    def change_status_start_inprogress(id):
+        with open("data/tournaments.json", "r") as f:
+            data = json.load(f)
+
+        tournoi = None
+        for d in data:
+            if d["id"] == str(id):
+                tournoi = d
+        if tournoi:
+            d["status"] = "inprogress"
+            with open("data/tournaments.json", 'w') as fichier:
+                json.dump(data, fichier, indent=2)
+        else:
+            print(f"Aucun élément trouvé avec l'id {id}")
+
+    @staticmethod
+    def close_tournament(id):
+        with open("data/tournaments.json", "r") as f:
+            data = json.load(f)
+
+        tournoi = None
+        for d in data:
+            if d["id"] == str(id):
+                tournoi = d
+        if tournoi:
+            d["status"] = "done"
+            with open("data/tournaments.json", 'w') as fichier:
+                json.dump(data, fichier, indent=2)
+        else:
+            print(f"Aucun élément trouvé avec l'id {id}")
+
 
 class Round:
-    def __init__(self, round_nb, matches, start_time, end_time=""):
+    def __init__(self, round_nb, matches, start_time="", end_time=""):
         self.round_nb = round_nb
-        self.matches = matches
         self.start_time = start_time
+        self.matches = matches
         self.end_time = end_time
 
     def to_dict(self):
-        return {"Round": self.round_nb, "matchs": self.matches,
-                "start_time": self.start_time,
-                "end_time": self.end_time
+        matchs_json = []
+        for m in self.matches:
+            matchs_json.append([[m[0][0].id, m[0][1]], [m[1][0].id, m[1][1]]])
+        return {"round": self.round_nb,
+                "start_time": str(self.start_time),
+                "matchs": matchs_json,
+                "end_time": str(self.end_time)
                 }
 
 # incription de l'heure du début du tour.
-
     def creation_round():
         print("Début d'un nouveau tour")
         round_start = datetime.now()
@@ -91,25 +130,18 @@ class Round:
         return round_end
 
     def save_round(self, id):
-        with open("data/tournaments.json", "r") as f:
-            data = json.load(f)
-        # L'id de l'élément que vous souhaitez mettre à jour
-        element_id = id
-
-        # Rechercher l'élément avec l'id spécifié
-        element_a_mettre_a_jour = next((element for element in data if element["id"] == element_id), None)
-
-        if element_a_mettre_a_jour:
-
-            element_a_mettre_a_jour["Rounds"].append({
-                "round_nb": self.round_nb,
-                "round_matches": self.matches,
-                "round_start_time": self.start_time
-
-            })
-
-            # Enregistrer les modifications dans le fichier JSON
-            with open('votre_fichier.json', 'w') as fichier:
+        with open("data/tournaments.json", 'r') as fichier:
+            data = json.load(fichier)
+        # Rechercher l'élément avec l'id spécifiée
+        tournoi = None
+        for d in data:
+            if d["id"] == str(id):
+                tournoi = d
+        if tournoi:
+            # Ajouter de nouvelles informations à la section "Rounds"
+            tournoi["rounds"].append(
+                self.to_dict())
+            with open("data/tournaments.json", 'w') as fichier:
                 json.dump(data, fichier, indent=2)
         else:
-            print(f"Aucun élément trouvé avec l'id {element_id}")
+            print(f"Aucun élément trouvé avec l'id {id}")

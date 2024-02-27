@@ -42,7 +42,7 @@ class Report:
                 if tournament_dict['place'] == place:
                     tournament = tournament_dict['players']
                     break
-        tournament.sort()
+        # tournament.sort()
         return tournament
 
     def get_tournament_numb_of_round_by_place(place):
@@ -51,7 +51,7 @@ class Report:
             data = json.load(f)
             for tournament_dict in data:
                 if tournament_dict['place'] == place:
-                    tournament = tournament_dict['nombre_de_tour']
+                    tournament = tournament_dict['number_of_round']
                     break
         return tournament
 

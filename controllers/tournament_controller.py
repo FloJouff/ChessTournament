@@ -1,8 +1,10 @@
 from views.tournament_view import TournamentView, MatchView
 from models.tournament import Tournament, Round
 from models.player import Player
-import random
 from views.player_view import PlayerView
+import random
+import copy
+import json
 
 
 class TournamentController:
@@ -36,23 +38,31 @@ class TournamentController:
                 tournoi = Tournament.load_tournament_by_id(id)
                 print(tournoi)
             elif choix == "4":
+                tournoi = self.load_tournament_start()
                 matches = self.round1_generating_matches(tournoi)
-                for i in range(1, int(tournoi.number_of_round)+1):
-                    round_start = str(Round.creation_round())
-                    round = Round(i, matches, round_start)
+                for i in range(1, int(tournoi["number_of_round"])+1):
+                    start_time = str(Round.creation_round())
+                    round = Round(i, matches, start_time)
+                    print("debut", start_time)
                     print(f"Liste des matchs du tour {i}:")
                     print("")
-                    round.save_round(tournoi.id)
-                    print(matches)
+                    print("matches : ", round.matches)
+                    id = str(tournoi["id"])
+                    Tournament.change_status_start_inprogress(id)
+                    print("")
                     print(f"Saisissez les résultats de match du tour{i}")
                     players_and_score1 = self.match_resolution(matches)
-                    matches = self.score_based_generating_matches(players_and_score1)
-                    round.round_closure()
+                    matches = self.score_based_generating_matches(players_and_score1, matches)
+                    round.end_time = round.round_closure()
                     print(f"Fin du tour {i}")
-                    print("")             
-                print(f"le vainqueur du tournoi {tournoi.name} est {players_and_score1[0]}")
+                    round.save_round(tournoi["id"])
+                    print("")
+                print(f"le vainqueur du tournoi {tournoi["name"]} est {players_and_score1[0]}")
+                id = str(tournoi["id"])
+                Tournament.close_tournament(id)
             elif choix == "5":
-                pass
+                id_tournoi = self.load_tournament_inprogress()
+                print(id_tournoi)
             elif choix == "0":
                 print("Quitter")
                 break
@@ -68,7 +78,7 @@ class TournamentController:
         return players
 
     def display_list_participants_with_score(self, tournoi):
-        players = tournoi.players
+        players = tournoi["players"]
         players_name = [Player.load_player_by_id(player) for player in players]
 
         scores = {player: 0.0 for player in players_name}
@@ -109,24 +119,69 @@ class TournamentController:
                 print(joueur)
         print("")
 
+        random.shuffle(players_and_score)
         players_and_score.sort(key=lambda x: x[1], reverse=True)
-        print(players_and_score)
-        print("")
 
         return players_and_score
 
-    def score_based_generating_matches(self, players_and_score):
+    def score_based_generating_matches(self, players_and_score, matches):
         print("Liste des joueurs par ordre décroissant de score: ",
               players_and_score)
         print("")
+        matchs_played = []
+        matchs_played = copy.copy(matches)
 
         matches = []
         for i in range(0, len(players_and_score), 2):
             if i + 1 < len(players_and_score):
                 joueur1 = players_and_score[i]
                 joueur2 = players_and_score[i + 1]
-                # si [joueur[i], joueur[i+1]] existe déjà alors créer [joueur[i], joueur[i+2]]
+                try:
+                    if [players_and_score[i], players_and_score[i+1]] in matchs_played:
+                        joueur2 = players_and_score[i+2]
+                except IndexError:
+                    print("Ce match a déjà été joué")
+                    joueur2 = players_and_score[i + 1]
             matches.append([joueur1, joueur2])
-        print(matches)
 
         return matches
+
+    def load_tournament_inprogress(self):
+        with open("data/tournaments.json", "r") as f:
+            data = json.load(f)
+
+        tournoi = []
+        for d in data:
+            if d["status"] == str("inprogress"):
+                tournoi.append(d)
+        print("Afficher tous les tournois en cours: ")
+
+        i = 0
+        for t in tournoi:
+            print(i, t["name"], t["place"], t["status"])
+            i = i + 1
+
+        choix = input("Saissez le numéro du tournoi à reprendre: ")
+        id_tournoi = tournoi[int(choix)]["id"]
+
+        return id_tournoi
+
+    def load_tournament_start(self):
+        with open("data/tournaments.json", "r") as f:
+            data = json.load(f)
+
+        tournament = []
+        for d in data:
+            if d["status"] == str("tostart"):
+                tournament.append(d)
+        print("Afficher tous les tournois non démarrés: ")
+
+        i = 0
+        for t in tournament:
+            print(i, t["name"], t["place"], t["status"])
+            i = i + 1
+
+        choix = input("Saissez le numéro du tournoi à démarrer: ")
+        tournoi = tournament[int(choix)]
+
+        return tournoi

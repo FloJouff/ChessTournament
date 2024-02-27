@@ -40,7 +40,7 @@ class PlayerView:
         first_name = input("Prénom: ")
         gender = input("Sexe: ")
         while True:
-            date_of_birth = input("Date de naissance: (format JJ/MM/AAAA)")     
+            date_of_birth = input("Date de naissance: (format JJ/MM/AAAA)")
             if PlayerView.date_validation(date_of_birth):
                 break
         while True:

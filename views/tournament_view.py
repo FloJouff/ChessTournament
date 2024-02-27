@@ -23,7 +23,7 @@ class TournamentView:
             if PlayerView.date_validation(end_date):
                 break
         description = input("Tapez votre commentaire concernant ce tournoi: ")
-        number_of_round = input("Nombre de tour pour ce tournoi: ")
+        number_of_round = int(input("Nombre de tour pour ce tournoi: "))
         return {"name": name, "place": place,
                 "start_date": start_date, "end_date": end_date,
                 "number_of_round": number_of_round, "description": description}

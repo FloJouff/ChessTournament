@@ -34,7 +34,7 @@ class ReportController:
             elif choix == "5":
                 place = input("De quel tournoi souhaitez vous connaitre le nombre de tours? ")
                 data = Report.get_tournament_numb_of_round_by_place(place)
-                print(data)
+                print(f"Nombre de tours du tournoi de {place} :", data)
                 print("")
             elif choix == "6":
                 place = input("De quel tournoi souhaitez vous connaitre les résultats? ")

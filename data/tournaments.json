@@ -1,130 +1,422 @@
 [
-    {
-        "id": "68ce2c93-ead2-4553-ba3c-d88e974790d7",
-        "name": "Tour'noi",
-        "place": "Tour",
-        "start_date": "01/02/2022",
-        "end_date": "02/02/2022",
-        "number_of_round": "4",
-        "players": [
-            "3aa43514-af26-4d5c-be7d-34a52abb0acb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
-            "cb50536b-94e6-4630-989b-0b2ab806a6ec",
-            "d016f9ab-3ae7-4981-b536-98925697caaa",
-            "cb50536b-94e6-4630-989b-0b2ab806a6ed",
-            "3aa43514-af26-4d5c-be7d-34a52abb0agb"
+  {
+    "id": "b3288d9b-a561-4d25-8205-5c84403da669",
+    "name": "Tournoi",
+    "place": "Tour",
+    "start_date": "01/01/2000",
+    "end_date": "01/01/2000",
+    "number_of_round": 4,
+    "players": [
+      "d016f9ab-3ae7-4981-b536-98925697caaa",
+      "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+      "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+      "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+      "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+      "cb50536b-94e6-4630-989b-0b2ab806a6ed"
+    ],
+    "description": "",
+    "rounds": [
+      {
+        "round": 1,
+        "start_time": "2024-02-27 15:58:08.201188",
+        "matchs": [
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+              1.0
+            ],
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+              0.0
+            ]
+          ],
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+              1.0
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+              0.0
+            ]
+          ],
+          [
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              1.0
+            ],
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+              0.0
+            ]
+          ]
         ],
-        "description": "",
-        "tournament_status": "in progress",
-        "rounds": [
-            {
-                "round_number": 1,
-                "round_matches": [],
-                "round_start_time": "2024-02-23 14:52:14.721639"
-            },
-            {
-                "round_number": 2,
-                "round_matches": [],
-                "round_start_time": "2024-02-23 14:52:14.740975"
-            },
-            {
-                "round_number": 3,
-                "round_matches": [],
-                "round_start_time": "2024-02-23 14:52:14.755350"
-            },
-            {
-                "round_number": 4,
-                "round_matches": [],
-                "round_start_time": "2024-02-23 14:52:14.766378"
-            }
-        ]
-    },
-    {
-        "id": "dba43f01-1d15-4005-90e2-52acb164c2b2",
-        "name": "Truc",
-        "place": "ici",
-        "start_date": "12/04/2022",
-        "end_date": "12/05/2023",
-        "number_of_round": "4",
-        "players": [
-            "3aa43514-af26-4d5c-be7d-34a52abb0acb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0agb",
-            "cb50536b-94e6-4630-989b-0b2ab806a6ed",
-            "cb50536b-94e6-4630-989b-0b2ab806a6ec",
-            "9b3b2a89-4579-4bfe-af39-13a811eb44cf"
+        "end_time": "2024-02-27 15:58:12.607197"
+      },
+      {
+        "round": 2,
+        "start_time": "2024-02-27 15:58:12.607197",
+        "matchs": [
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+              2.0
+            ],
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              1.0
+            ]
+          ],
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+              2.0
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+              0.0
+            ]
+          ],
+          [
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+              1.0
+            ],
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+              0.0
+            ]
+          ]
         ],
-        "description": "",
-        "Rounds": []
-    },
-    {
-        "id": "5f7da989-6e63-4cdf-a11c-13fee58b5f5c",
-        "name": "machin",
-        "place": "ailleurs",
-        "start_date": "03/03/2023",
-        "end_date": "03/03/2023",
-        "number_of_round": "4",
-        "players": [
-            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0acb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0agb",
-            "cb50536b-94e6-4630-989b-0b2ab806a6ed",
-            "9b3b2a89-4579-4bfe-af39-13a811eb44cf",
-            "d016f9ab-3ae7-4981-b536-98925697caaa"
+        "end_time": "2024-02-27 15:58:16.887511"
+      },
+      {
+        "round": 3,
+        "start_time": "2024-02-27 15:58:16.887511",
+        "matchs": [
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+              3.0
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+              2.0
+            ]
+          ],
+          [
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+              2.0
+            ],
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              1.0
+            ]
+          ],
+          [
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+              1.0
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+              0.0
+            ]
+          ]
         ],
-        "description": "",
-        "Rounds": []
-    },
-    {
-        "id": "fe9fd40d-8e89-432d-a7fd-82ee0dc18875",
-        "name": ",ujy",
-        "place": ",h",
-        "start_date": "01/01/2000",
-        "end_date": "01/01/2000",
-        "number_of_round": "4",
-        "players": [
-            "3aa43514-af26-4d5c-be7d-34a52abb0acb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0agb",
-            "cb50536b-94e6-4630-989b-0b2ab806a6ed"
+        "end_time": "2024-02-27 15:58:22.775046"
+      },
+      {
+        "round": 4,
+        "start_time": "2024-02-27 15:58:22.775046",
+        "matchs": [
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+              4.0
+            ],
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+              2.0
+            ]
+          ],
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+              3.0
+            ],
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              1.0
+            ]
+          ],
+          [
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+              2.0
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+              0.0
+            ]
+          ]
         ],
-        "description": "",
-        "Rounds": []
-    },
-    {
-        "id": "de02bf8b-b4d6-490a-834c-c73be88886cf",
-        "name": "htre",
-        "place": "tr",
-        "start_date": "01/01/2000",
-        "end_date": "01/01/2000",
-        "number_of_round": "4",
-        "players": [
-            "d016f9ab-3ae7-4981-b536-98925697caaa",
-            "cb50536b-94e6-4630-989b-0b2ab806a6ed",
-            "3aa43514-af26-4d5c-be7d-34a52abb0afb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
-            "cb50536b-94e6-4630-989b-0b2ab806a6ec",
-            "3aa43514-af26-4d5c-be7d-34a52abb0acb"
+        "end_time": "2024-02-27 15:58:27.575087"
+      }
+    ],
+    "status": "inprogress"
+  },
+  {
+    "id": "ac282372-78e2-4596-baf6-e9dd17a255f5",
+    "name": "Truc",
+    "place": "ici",
+    "start_date": "01/01/2000",
+    "end_date": "01/01/2000",
+    "number_of_round": 4,
+    "players": [
+      "d016f9ab-3ae7-4981-b536-98925697caaa",
+      "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+      "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+      "3aa43514-af26-4d5c-be7d-34a52abb0atb"
+    ],
+    "description": "",
+    "rounds": [
+      {
+        "round": 1,
+        "start_time": "2024-02-27 16:02:33.569578",
+        "matchs": [
+          [
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              0.5
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+              0.5
+            ]
+          ],
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+              0.0
+            ],
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+              1.0
+            ]
+          ]
         ],
-        "description": "",
-        "Rounds": []
-    },
-    {
-        "id": "4c00201c-8802-47ff-aa75-57a94f9c1777",
-        "name": "nbr",
-        "place": "vtr",
-        "start_date": "05/05/2000",
-        "end_date": "05/06/2001",
-        "number_of_round": "4",
-        "players": [
-            "3aa43514-af26-4d5c-be7d-34a52abb0acb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0atb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0agb",
-            "3aa43514-af26-4d5c-be7d-34a52abb0afb",
-            "9b3b2a89-4579-4bfe-af39-13a811eb44cf",
-            "cb50536b-94e6-4630-989b-0b2ab806a6ed"
+        "end_time": "2024-02-27 16:02:37.855075"
+      },
+      {
+        "round": 2,
+        "start_time": "2024-02-27 16:02:37.855469",
+        "matchs": [
+          [
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+              1.5
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+              1.0
+            ]
+          ],
+          [
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              0.5
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+              1.0
+            ]
+          ]
         ],
-        "description": "",
-        "Rounds": []
-    }
+        "end_time": "2024-02-27 16:02:40.335523"
+      },
+      {
+        "round": 3,
+        "start_time": "2024-02-27 16:02:40.335523",
+        "matchs": [
+          [
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+              2.5
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+              2.0
+            ]
+          ],
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+              2.0
+            ],
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              0.5
+            ]
+          ]
+        ],
+        "end_time": "2024-02-27 16:02:42.967343"
+      },
+      {
+        "round": 4,
+        "start_time": "2024-02-27 16:02:42.975490",
+        "matchs": [
+          [
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+              2.5
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+              4.0
+            ]
+          ],
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0agb",
+              4.0
+            ],
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              0.5
+            ]
+          ]
+        ],
+        "end_time": "2024-02-27 16:02:47.822037"
+      }
+    ],
+    "status": "inprogress"
+  },
+  {
+    "id": "e3b8d258-7b4f-43f7-8206-d37d1d89a1ef",
+    "name": "top",
+    "place": "ailleurs",
+    "start_date": "01/02/2022",
+    "end_date": "01/02/2022",
+    "number_of_round": 4,
+    "players": [
+      "d016f9ab-3ae7-4981-b536-98925697caaa",
+      "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+      "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+      "3aa43514-af26-4d5c-be7d-34a52abb0acb"
+    ],
+    "description": "",
+    "rounds": [
+      {
+        "round": 1,
+        "start_time": "2024-02-27 16:05:50.763313",
+        "matchs": [
+          [
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+              1.0
+            ],
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              0.0
+            ]
+          ],
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+              1.0
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+              0.0
+            ]
+          ]
+        ],
+        "end_time": "2024-02-27 16:05:54.119134"
+      },
+      {
+        "round": 2,
+        "start_time": "2024-02-27 16:05:54.121450",
+        "matchs": [
+          [
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+              2.0
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+              1.0
+            ]
+          ],
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+              1.0
+            ],
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              0.0
+            ]
+          ]
+        ],
+        "end_time": "2024-02-27 16:05:56.390503"
+      },
+      {
+        "round": 3,
+        "start_time": "2024-02-27 16:05:56.391862",
+        "matchs": [
+          [
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+              3.0
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+              1.0
+            ]
+          ],
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+              2.0
+            ],
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              0.0
+            ]
+          ]
+        ],
+        "end_time": "2024-02-27 16:06:00.190333"
+      },
+      {
+        "round": 4,
+        "start_time": "2024-02-27 16:06:00.191597",
+        "matchs": [
+          [
+            [
+              "cb50536b-94e6-4630-989b-0b2ab806a6ec",
+              4.0
+            ],
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0acb",
+              2.0
+            ]
+          ],
+          [
+            [
+              "3aa43514-af26-4d5c-be7d-34a52abb0atb",
+              2.0
+            ],
+            [
+              "d016f9ab-3ae7-4981-b536-98925697caaa",
+              0.0
+            ]
+          ]
+        ],
+        "end_time": "2024-02-27 16:06:03.254104"
+      }
+    ],
+    "status": "done"
+  }
 ]
