@@ -116,8 +116,7 @@ class Report:
                             for i in range(0, int(len(round_dict['matchs']))):
                                 for j in range(0, 2):
                                     joueur = Player.load_player_by_id(round_dict['matchs'][i][j][0])
-                                    str(round_dict['matchs']).replace(str(round_dict['matchs'][i][j][0]), str(joueur))
-                                    print("joueurs id: ", round_dict['matchs'][i][j][0], "Nom:", joueur)
+                                    round_dict['matchs'][i][j][0] = joueur
                                     tournament = round_dict['matchs']
                             break
         return tournament

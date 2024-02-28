@@ -72,7 +72,7 @@ class ReportController:
                     datas = [joueur.id, joueur.name, joueur.first_name,
                              joueur.ine]
                     print("d:", datas)
-                    datas = datas.sort(key=data[1])
+                    # datas = datas.sort(key=data[1])
                     filename = "Joueurs", tournoi[int(choice)]["name"]
                     fieldnames = ["id", "nom", "prénom", "ine"]
                     Report.add_data_to_csv(filename, fieldnames, datas)
