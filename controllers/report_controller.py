@@ -2,8 +2,6 @@ from views.report_view import ReportView
 from models.report import Report
 from models.player import Player
 from operator import attrgetter
-import json
-""" Gère la génération des rapports demandés"""
 
 
 class ReportController:
@@ -63,20 +61,18 @@ class ReportController:
                 choice = input("Pour quel tournoi souhaitez vous ces informations? ")
                 id_tournoi = tournoi[int(choice)]["id"]
                 data = Report.get_tournament_participants_by_id(id_tournoi)
-
                 players = []
+                print("data :", data)
                 for player in data:
                     joueur = Player.load_player_by_id(player)
                     print("Joueur: ", joueur.name)
                     players.append(joueur.name)
+                    players.sort()
                     datas = [joueur.id, joueur.name, joueur.first_name,
                              joueur.ine]
-                    print("d:", datas)
-                    # datas = datas.sort(key=data[1])
                     filename = "Joueurs", tournoi[int(choice)]["name"]
                     fieldnames = ["id", "nom", "prénom", "ine"]
                     Report.add_data_to_csv(filename, fieldnames, datas)
-                players.sort()
                 print("Participants :", players)
                 print("")
             elif choix == "5":

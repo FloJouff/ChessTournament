@@ -47,13 +47,18 @@ class MatchView:
         print(player1, " vs ", player2)
 
     def match_results_entry(player1, player2):
-        result = input(f"Veuillez indiquer le resultat du match entre {player1[0]} et {player2[0]} (J1, J2 ou nul): ")
-        if result == "J1":
-            player1[1] = player1[1] + 1
-        elif result == "J2":
-            player2[1] = player2[1] + 1
-        elif result == "nul":
-            player1[1] = player1[1] + 0.5
-            player2[1] = player2[1] + 0.5
-        else:
-            print("Saisie incorrecte")
+        while True:
+            result = input(f"Veuillez indiquer le resultat du match entre {player1[0]} et {player2[0]} (J1, J2 ou nul): ")
+            result_lower = result.lower()
+            if result_lower == "j1":
+                player1[1] = player1[1] + 1
+                break
+            elif result_lower == "j2":
+                player2[1] = player2[1] + 1
+                break
+            elif result_lower == "nul":
+                player1[1] = player1[1] + 0.5
+                player2[1] = player2[1] + 0.5
+                break
+            else:
+                print("Saisie incorrecte")

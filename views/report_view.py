@@ -9,7 +9,7 @@ class ReportView:
         print("2 --> Pour afficher la liste de tous les joueurs")
         print("3 --> Pour afficher le nom et les dates d'un tournoi")
         print("4 --> Pour afficher la liste des joueurs d'un tournoi")
-        print("5 --> Pour afficher la liste des tours  d'un tournoi")
+        print("5 --> Pour afficher le nombre de tours d'un tournoi")
         print("6 --> Pour afficher la liste des matchs d'un tour")
         print("0 --> Retour au menu précédent")
         print("")

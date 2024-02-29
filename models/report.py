@@ -4,26 +4,6 @@ import json
 import os
 import csv
 
-# def load_tournament_start(self):
-#         with open("data/tournaments.json", "r") as f:
-#             data = json.load(f)
-
-#         tournament = []
-#         for d in data:
-#             if d["status"] == str("tostart"):
-#                 tournament.append(d)
-#         print("Afficher tous les tournois non démarrés: ")
-
-#         i = 0
-#         for t in tournament:
-#             print(i, t["name"], t["place"], t["status"])
-#             i = i + 1
-
-#         choix = input("Saissez le numéro du tournoi à démarrer: ")
-#         tournoi = tournament[int(choix)]
-
-#         return tournoi
-
 
 class Report:
     def add_data_to_csv(file_name, fieldnames, data):

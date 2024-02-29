@@ -1,6 +1,7 @@
 from views.tournament_view import TournamentView, MatchView
 from models.tournament import Tournament, Round
 from models.player import Player
+from models.report import Report
 from views.player_view import PlayerView
 import random
 import copy
@@ -47,8 +48,32 @@ class TournamentController:
                     print(f"Liste des matchs du tour {i}:")
                     print("")
                     print("matches : ", round.matches)
+                    print("")
+                    print(f"Saisissez les résultats de match du tour{i}")
+                    players_and_score1 = self.match_resolution(matches)
+                    matches = self.score_based_generating_matches(players_and_score1, matches)
+                    round.end_time = round.round_closure()
+                    print(f"Fin du tour {i}")
                     id = str(tournoi["id"])
                     Tournament.change_status_start_inprogress(id)
+                    round.save_round(tournoi["id"])
+                    print("")
+                print(f"le vainqueur du tournoi {tournoi["name"]} est {players_and_score1[0]}")
+                id = str(tournoi["id"])
+                Tournament.close_tournament(id)
+            elif choix == "5":
+                tournoi = self.load_tournament_inprogress()
+                round_to_start = int(input("Indiquez à partir de quel round vous voulez reprendre ce tournoi :"))
+                matches = Report.display_matches_per_round(tournoi["id"], round_to_start-1)
+                print("match: ", matches)
+                for i in range(round_to_start, int(tournoi["number_of_round"]) + 1):
+                    start_time = str(Round.creation_round())
+                    round = Round(i, matches, start_time)
+                    print("debut", start_time)
+                    print(f"Liste des matchs du tour {i}:")
+                    print("")
+                    print("matches : ", round.matches)
+                    id = str(tournoi["id"])
                     print("")
                     print(f"Saisissez les résultats de match du tour{i}")
                     players_and_score1 = self.match_resolution(matches)
@@ -60,9 +85,6 @@ class TournamentController:
                 print(f"le vainqueur du tournoi {tournoi["name"]} est {players_and_score1[0]}")
                 id = str(tournoi["id"])
                 Tournament.close_tournament(id)
-            elif choix == "5":
-                id_tournoi = self.load_tournament_inprogress()
-                print(id_tournoi)
             elif choix == "0":
                 print("Quitter")
                 break
@@ -162,9 +184,9 @@ class TournamentController:
             i = i + 1
 
         choix = input("Saissez le numéro du tournoi à reprendre: ")
-        id_tournoi = tournoi[int(choix)]["id"]
+        tournoi = tournoi[int(choix)]
 
-        return id_tournoi
+        return tournoi
 
     def load_tournament_start(self):
         with open("data/tournaments.json", "r") as f:

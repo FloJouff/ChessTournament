@@ -35,7 +35,7 @@ class Tournament:
         tournament_data = self.to_dict()
         data.append(tournament_data)
         with open("data/tournaments.json", "w") as f:
-            json.dump(data, f, indent=4)
+            json.dump(data, f, indent=2)
 
     @staticmethod
     def display_tournaments():
@@ -70,7 +70,7 @@ class Tournament:
             if d["id"] == str(id):
                 tournoi = d
         if tournoi:
-            d["status"] = "inprogress"
+            tournoi["status"] = str("inprogress")
             with open("data/tournaments.json", 'w') as fichier:
                 json.dump(data, fichier, indent=2)
         else:
@@ -86,7 +86,7 @@ class Tournament:
             if d["id"] == str(id):
                 tournoi = d
         if tournoi:
-            d["status"] = "done"
+            tournoi["status"] = str("done")
             with open("data/tournaments.json", 'w') as fichier:
                 json.dump(data, fichier, indent=2)
         else:
