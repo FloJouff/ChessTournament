@@ -1,7 +1,5 @@
 from models.player import Player
 from datetime import datetime
-import re
-import json
 
 
 class PlayerView:
@@ -12,7 +10,7 @@ class PlayerView:
         print("Afficher tous les joueurs: ")
         i = 0
         for player in players:
-            print(i, player.name, player.first_name)
+            print(i, "Nom: ", player.name, "  Prénom: ", player.first_name, "INE: ", player.ine)
             i = i + 1
 
     def date_validation(date_str):

@@ -39,10 +39,11 @@ class Report:
         print("")
         i = 0
         for t in tournament:
-            print(i, "Nom: ", t["name"], "Lieu: ", t["place"],
-                  "Date de début :", t["start_date"],
-                  "Date de fin :", t["end_date"],
-                  "Description :", t["description"])
+            print(i, "Nom: ", t["name"], "   Lieu: ", t["place"],
+                  "   Date de début: ", t["start_date"],
+                  "   Date de fin: ", t["end_date"],
+                  "   Description: ", t["description"],
+                  "   statut: ", t["status"])
             i = i + 1
         return data
 

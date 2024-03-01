@@ -38,12 +38,6 @@ class Tournament:
             json.dump(data, f, indent=2)
 
     @staticmethod
-    def display_tournaments():
-        with open("data/tournaments.json", "r") as f:
-            data = json.loads(f.read())
-            print(data)
-
-    @staticmethod
     def load_tournament_by_id(id):
         tournament = None
         with open("data/tournaments.json", "r") as f:

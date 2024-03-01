@@ -32,8 +32,7 @@ class TournamentController:
                 self.generate_list_of_player(tournoi)
                 tournoi.create_tournament()
             elif choix == "2":
-                liste = Tournament.display_tournaments()
-                print(liste)
+                Report.display_tournaments()
             elif choix == "3":
                 id = input("Veuillez saisir l'id du tournoi souhaité: ")
                 tournoi = Tournament.load_tournament_by_id(id)
