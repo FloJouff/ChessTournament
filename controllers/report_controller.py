@@ -62,17 +62,14 @@ class ReportController:
                 id_tournoi = tournoi[int(choice)]["id"]
                 data = Report.get_tournament_participants_by_id(id_tournoi)
                 players = []
-                print("data :", data)
                 for player in data:
                     joueur = Player.load_player_by_id(player)
-                    print("Joueur: ", joueur.name)
-                    players.append(joueur.name)
+                    players.append([joueur.name, joueur.first_name, joueur.ine])
                     players.sort()
-                    datas = [joueur.id, joueur.name, joueur.first_name,
-                             joueur.ine]
+                for i in players:
                     filename = "Joueurs", tournoi[int(choice)]["name"]
-                    fieldnames = ["id", "nom", "prénom", "ine"]
-                    Report.add_data_to_csv(filename, fieldnames, datas)
+                    fieldnames = ["nom", "prénom", "ine"]
+                    Report.add_data_to_csv(filename, fieldnames, i)
                 print("Participants :", players)
                 print("")
             elif choix == "5":

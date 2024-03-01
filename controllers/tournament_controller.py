@@ -118,7 +118,7 @@ class TournamentController:
             players_and_score.remove(joueur1)
             joueur2 = random.choice(players_and_score)
             players_and_score.remove(joueur2)
-            matches1.append([joueur1, joueur2])
+            matches1.append((joueur1, joueur2))
         for match in matches1:
             print(match)
 
@@ -163,7 +163,7 @@ class TournamentController:
                 except IndexError:
                     print("Ce match a déjà été joué")
                     joueur2 = players_and_score[i + 1]
-            matches.append([joueur1, joueur2])
+            matches.append((joueur1, joueur2))
 
         return matches
 
