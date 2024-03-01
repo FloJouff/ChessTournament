@@ -16,7 +16,6 @@ class Report:
                 writer.writerow(data)
         else:
             fieldname = fieldnames
-
             with open('fichiers_csv' + '//' + f'{file_name}.csv', 'a',
                       encoding='UTF-8-sig') as fichier_csv:
                 writer = csv.writer(fichier_csv, delimiter=",",
@@ -72,7 +71,6 @@ class Report:
                 if tournament_dict['id'] == id:
                     tournament = tournament_dict['players']
                     break
-        # tournament.sort()
         return tournament
 
     def get_tournament_numb_of_round_by_id(id):

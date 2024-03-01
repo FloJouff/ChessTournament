@@ -27,7 +27,6 @@ class PlayerView:
             else:
                 print("La date doit être comprise entre 01/01/1900 et aujourd'hui.")
                 return False
-
         except ValueError:
             print("Format de date invalide. Utilisez le format JJ/MM/AAAA.")
             return False

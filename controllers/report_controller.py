@@ -50,7 +50,7 @@ class ReportController:
                 print("Nom du tournoi :", data.name, "Date de début: ",
                       data.start_date, "Date de fin: ", data.end_date)
                 print("")
-                datas = [data.id, data.name, data.start_date, data.end_date]
+                datas = [id_tournoi, data.name, data.start_date, data.end_date]
                 filename = data.name
                 fieldnames = ["id", "nom", "Date de début", "Date de fin"]
                 Report.add_data_to_csv(filename, fieldnames, datas)
@@ -93,7 +93,7 @@ class ReportController:
                 print("")
                 choice = input("Pour quel tournoi souhaitez vous ces informations? ")
                 id_tournoi = tournoi[int(choice)]["id"]
-                round = input("De quel tour voulez vous les matchs?")
+                round = input("De quel tour voulez-vous les matchs?")
                 data = Report.display_matches_per_round(id_tournoi, round)
                 datas = [tournoi[int(choice)]["id"],
                          tournoi[int(choice)]["name"], round, data]

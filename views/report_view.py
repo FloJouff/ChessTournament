@@ -1,5 +1,3 @@
-
-
 class ReportView:
     def menu_report(self):
         print("+++++++++++++++++++++++++++++++++++++++++++++++++++")

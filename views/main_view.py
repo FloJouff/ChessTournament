@@ -1,4 +1,3 @@
-
 class MainView:
     def menu_principal(self):
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++++")

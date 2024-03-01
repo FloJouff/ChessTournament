@@ -1,6 +1,6 @@
-import json
 from datetime import datetime
 import uuid
+import json
 
 
 class Tournament:
@@ -18,7 +18,7 @@ class Tournament:
         self.status = "tostart"
 
     def __str__(self):
-        return f"Bienvenue au tournoi {self.name}, a {self.place}"
+        return f"Bienvenue au tournoi {self.name}, qui se déroule à {self.place}"
 
     def to_dict(self):
         return {"id": str(self.id), "name": self.name, "place": self.place,
@@ -58,7 +58,6 @@ class Tournament:
     def change_status_start_inprogress(id):
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
-
         tournoi = None
         for d in data:
             if d["id"] == str(id):
@@ -74,7 +73,6 @@ class Tournament:
     def close_tournament(id):
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
-
         tournoi = None
         for d in data:
             if d["id"] == str(id):
@@ -133,8 +131,7 @@ class Round:
                 tournoi = d
         if tournoi:
             # Ajouter de nouvelles informations à la section "Rounds"
-            tournoi["rounds"].append(
-                self.to_dict())
+            tournoi["rounds"].append(self.to_dict())
             with open("data/tournaments.json", 'w') as fichier:
                 json.dump(data, fichier, indent=2)
         else:

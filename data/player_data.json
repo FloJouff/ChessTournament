@@ -62,5 +62,13 @@
         "gender": "M",
         "date_of_birth": "12/12/2012",
         "ine": "GF15978"
+    },
+    {
+        "id": "0c9579d4-6215-4bd6-b0a8-ee10cc5b0b9f",
+        "name": "Grey",
+        "first_name": "Jean",
+        "gender": "F",
+        "date_of_birth": "22/12/1970",
+        "ine": "JH51783"
     }
 ]

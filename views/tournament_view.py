@@ -4,8 +4,8 @@ from views.player_view import PlayerView
 
 class TournamentView:
     def __init__(self) -> None:
-        self.tournament = Tournament("Chess Tour-nament", "Tour", "12/10/2022",
-                                     "14/10/2022", "")
+        self.tournament = Tournament("", "", "",
+                                     "", "")
 
     def display_tournament(self):
         print(self.name, self.place)
@@ -48,7 +48,7 @@ class MatchView:
 
     def match_results_entry(player1, player2):
         while True:
-            result = input(f"Veuillez indiquer le resultat du match entre {player1[0]} et {player2[0]} (J1, J2 ou nul): ")
+            result = input(f"Veuillez indiquer le resultat du match {player1[0]} vs {player2[0]} (J1, J2 ou nul): ")
             result_lower = result.lower()
             if result_lower == "j1":
                 player1[1] = player1[1] + 1

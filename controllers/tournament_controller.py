@@ -46,7 +46,7 @@ class TournamentController:
                     print("debut", start_time)
                     print(f"Liste des matchs du tour {i}:")
                     print("")
-                    print("matches : ", round.matches)
+                    print("Matchs : ", round.matches)
                     print("")
                     print(f"Saisissez les résultats de match du tour{i}")
                     players_and_score1 = self.match_resolution(matches)
@@ -71,7 +71,7 @@ class TournamentController:
                     print("debut", start_time)
                     print(f"Liste des matchs du tour {i}:")
                     print("")
-                    print("matches : ", round.matches)
+                    print("Matchs : ", round.matches)
                     id = str(tournoi["id"])
                     print("")
                     print(f"Saisissez les résultats de match du tour{i}")
@@ -101,10 +101,8 @@ class TournamentController:
     def display_list_participants_with_score(self, tournoi):
         players = tournoi["players"]
         players_name = [Player.load_player_by_id(player) for player in players]
-
         scores = {player: 0.0 for player in players_name}
         players_and_score = [[player, scores[player]] for player in players_name]
-
         return players_and_score
 
 # Création d'une liste aléatoire, sans répétition, de tous les participants
@@ -121,28 +119,24 @@ class TournamentController:
             matches1.append((joueur1, joueur2))
         for match in matches1:
             print(match)
-
         return matches1
 
     def match_resolution(self, matches):
-        for player in matches:
+        for match in matches:
             print("-------------------------------------------")
-            MatchView.display_match(player[0], player[1])
-            MatchView.match_results_entry(player[0], player[1])
+            MatchView.display_match(match[0], match[1])
+            MatchView.match_results_entry(match[0], match[1])
         print("")
         print("Nouvelle liste de joueurs avec les scores à jour: ")
         print("")
-
         players_and_score = []
-        for player in matches:
-            for joueur in player:
+        for match in matches:
+            for joueur in match:
                 players_and_score.append(joueur)
                 print(joueur)
         print("")
-
         random.shuffle(players_and_score)
         players_and_score.sort(key=lambda x: x[1], reverse=True)
-
         return players_and_score
 
     def score_based_generating_matches(self, players_and_score, matches):
@@ -151,7 +145,6 @@ class TournamentController:
         print("")
         matchs_played = []
         matchs_played = copy.copy(matches)
-
         matches = []
         for i in range(0, len(players_and_score), 2):
             if i + 1 < len(players_and_score):
@@ -164,45 +157,36 @@ class TournamentController:
                     print("Ce match a déjà été joué")
                     joueur2 = players_and_score[i + 1]
             matches.append((joueur1, joueur2))
-
         return matches
 
     def load_tournament_inprogress(self):
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
-
         tournoi = []
         for d in data:
             if d["status"] == str("inprogress"):
                 tournoi.append(d)
         print("Afficher tous les tournois en cours: ")
-
         i = 0
         for t in tournoi:
             print(i, t["name"], t["place"], t["status"])
             i = i + 1
-
         choix = input("Saissez le numéro du tournoi à reprendre: ")
         tournoi = tournoi[int(choix)]
-
         return tournoi
 
     def load_tournament_start(self):
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
-
         tournament = []
         for d in data:
             if d["status"] == str("tostart"):
                 tournament.append(d)
         print("Afficher tous les tournois non démarrés: ")
-
         i = 0
         for t in tournament:
             print(i, t["name"], t["place"], t["status"])
             i = i + 1
-
         choix = input("Saissez le numéro du tournoi à démarrer: ")
         tournoi = tournament[int(choix)]
-
         return tournoi

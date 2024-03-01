@@ -2,11 +2,9 @@ from controllers.tournament_controller import TournamentController
 from controllers.player_controller import PlayerController
 from controllers.report_controller import ReportController
 from views.main_view import MainView
+
 """ Controlleur principal qui gère les interactions
 entre les vues et les autres controlleurs
-
-sauvegarde auto
-génération des rapports
 """
 
 
