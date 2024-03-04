@@ -1,12 +1,13 @@
 from models.player import Player
 from datetime import datetime
+from typing import List
 
 
 class PlayerView:
     def afficher_player(self):
         print(Player.name, Player.first_name, Player.score)
 
-    def display_list_players(self, players: [Player]):
+    def display_list_players(self, players: List[Player]):
         print("Afficher tous les joueurs: ")
         i = 0
         for player in players:

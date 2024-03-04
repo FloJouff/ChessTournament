@@ -1,3 +1,5 @@
 .env/
 .idea/
 fichiers_csv/
+.mypy/
+.flake8_rapport/

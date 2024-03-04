@@ -645,5 +645,26 @@
       }
     ],
     "status": "inprogress"
+  },
+  {
+    "id": "04db3182-c4c3-473c-9318-bb705e052ced",
+    "name": "Star",
+    "place": "Pau",
+    "start_date": "05/05/2020",
+    "end_date": "05/05/2020",
+    "number_of_round": 4,
+    "players": [
+      "7c4e4b16-09b1-422c-9bce-1b490b8a64d6",
+      "0c9579d4-6215-4bd6-b0a8-ee10cc5b0b9f",
+      "d016f9ab-3ae7-4981-b536-98925697caaa",
+      "9b3b2a89-4579-4bfe-af39-13a811eb44cf",
+      "cb50536b-94e6-4630-989b-0b2ab806a6ed",
+      "cb50536b-94e6-4630-989b-0b2ab806a6ec"
+    ],
+    "description": "",
+    "rounds": [
+      
+    ],
+    "status": "tostart"
   }
 ]

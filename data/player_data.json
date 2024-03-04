@@ -70,5 +70,13 @@
         "gender": "F",
         "date_of_birth": "22/12/1970",
         "ine": "JH51783"
+    },
+    {
+        "id": "7c4e4b16-09b1-422c-9bce-1b490b8a64d6",
+        "name": "Howeltt",
+        "first_name": "James",
+        "gender": "M",
+        "date_of_birth": "14/04/1901",
+        "ine": "DS15987"
     }
 ]

@@ -32,7 +32,7 @@ class TournamentController:
                 self.generate_list_of_player(tournoi)
                 tournoi.create_tournament()
             elif choix == "2":
-                Report.display_tournaments()
+                Report.display_tournaments(self)
             elif choix == "3":
                 id = input("Veuillez saisir l'id du tournoi souhaité: ")
                 tournoi = Tournament.load_tournament_by_id(id)
@@ -41,7 +41,7 @@ class TournamentController:
                 tournoi = self.load_tournament_start()
                 matches = self.round1_generating_matches(tournoi)
                 for i in range(1, int(tournoi["number_of_round"])+1):
-                    start_time = str(Round.creation_round())
+                    start_time = str(Round.creation_round(self))
                     round = Round(i, matches, start_time)
                     print("debut", start_time)
                     print(f"Liste des matchs du tour {i}:")
@@ -89,7 +89,7 @@ class TournamentController:
                 break
 
     def generate_list_of_player(self, tournoi):
-        players = Player.load_all_players()
+        players = Player.load_all_players(self)
         self.playerviews.display_list_players(players)
         nb_participants = input("Indiquez le nombre de participants à ce tournoi: ")
         while (len(tournoi.players) < int(nb_participants)):
@@ -147,14 +147,11 @@ class TournamentController:
         matchs_played = copy.copy(matches)
         matches = []
         for i in range(0, len(players_and_score), 2):
-            if i + 1 < len(players_and_score):
+            if i + 2 < len(players_and_score):
                 joueur1 = players_and_score[i]
-                joueur2 = players_and_score[i + 1]
-                try:
-                    if [players_and_score[i], players_and_score[i+1]] in matchs_played:
-                        joueur2 = players_and_score[i+2]
-                except IndexError:
-                    print("Ce match a déjà été joué")
+                if (players_and_score[i], players_and_score[i+1]) in matchs_played:
+                    joueur2 = players_and_score[i+2]
+                else:
                     joueur2 = players_and_score[i + 1]
             matches.append((joueur1, joueur2))
         return matches

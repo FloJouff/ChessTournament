@@ -34,7 +34,7 @@ class Player:
         with open("data/player_data.json", "w") as f:
             json.dump(data, f, indent=4)
 
-    def load_all_players():
+    def load_all_players(self):
         player_list = []
         with open("data/player_data.json", "r") as f:
             data = json.load(f)

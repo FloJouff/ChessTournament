@@ -13,7 +13,7 @@ class ReportController:
         while (choix != "0"):
             choix = self.reportview.menu_report()
             if choix == "1":
-                data = Report.display_tournaments()
+                data = Report.display_tournaments(self)
                 for i in range(len(data)):
                     datas = [data[i]["id"], data[i]["name"], data[i]["place"],
                              data[i]["start_date"], data[i]["end_date"],
@@ -26,7 +26,7 @@ class ReportController:
                                   "Nb_of_round", "rounds", "status"]
                     Report.add_data_to_csv(filename, fieldnames, datas)
             elif choix == "2":
-                data = Player.load_all_players()
+                data = Player.load_all_players(self)
                 print("Liste de tous les joueurs enregistrés dans le fichier:")
                 data = sorted(data, key=attrgetter('name'))
                 print(data)
@@ -41,7 +41,7 @@ class ReportController:
                     Report.add_data_to_csv(filename, fieldnames, datas)
             elif choix == "3":
                 print("Liste des tournois: ")
-                tournoi = Report.display_tournaments()
+                tournoi = Report.display_tournaments(self)
                 print("")
                 choice = input("Pour quel tournoi souhaitez vous ces informations? ")
                 id_tournoi = tournoi[int(choice)]["id"]
@@ -56,7 +56,7 @@ class ReportController:
                 Report.add_data_to_csv(filename, fieldnames, datas)
             elif choix == "4":
                 print("Liste des tournois: ")
-                tournoi = Report.display_tournaments()
+                tournoi = Report.display_tournaments(self)
                 print("")
                 choice = input("Pour quel tournoi souhaitez vous ces informations? ")
                 id_tournoi = tournoi[int(choice)]["id"]
@@ -74,7 +74,7 @@ class ReportController:
                 print("")
             elif choix == "5":
                 print("Liste des tournois: ")
-                tournoi = Report.display_tournaments()
+                tournoi = Report.display_tournaments(self)
                 print("")
                 choice = input("Pour quel tournoi souhaitez vous ces informations? ")
                 id_tournoi = tournoi[int(choice)]["id"]
@@ -89,7 +89,7 @@ class ReportController:
                 print("")
             elif choix == "6":
                 print("Liste des tournois: ")
-                tournoi = Report.display_tournaments()
+                tournoi = Report.display_tournaments(self)
                 print("")
                 choice = input("Pour quel tournoi souhaitez vous ces informations? ")
                 id_tournoi = tournoi[int(choice)]["id"]
