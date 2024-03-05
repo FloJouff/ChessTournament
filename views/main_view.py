@@ -1,3 +1,6 @@
+import Constantes.constantes as constante
+
+
 class MainView:
     def menu_principal(self):
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
@@ -7,9 +10,9 @@ class MainView:
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         print("------------------  MENU PRINCIPAL  ------------------")
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        print("1 --> Pour accéder au menu des joueurs")
-        print("2 --> Pour accéder au menu des tournoi")
-        print("3 --> Pour accéder au menu des rapports")
+        print(f"{constante.PLAYER_MENU} --> Pour accéder au menu des joueurs")
+        print(f"{constante.TOURNAMENT_MENU} --> Pour accéder au menu des tournois")
+        print(f"{constante.REPORT_MENU} --> Pour accéder au menu des rapports")
         print("0 --> Pour Quitter")
         print("")
         return input("Votre choix: ")

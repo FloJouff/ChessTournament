@@ -59,11 +59,10 @@ class TournamentController:
                 Tournament.close_tournament(id)
             elif choix == constante.RESUME_TOURNAMENT:
                 tournoi = self.load_tournament_inprogress()
-                round_to_start = int(input("Indiquez à partir de quel round vous voulez reprendre ce tournoi :"))
-                matches = Report.display_matches_per_round(tournoi["id"], round_to_start - 1)
-                print("match: ", matches)
-                for i in range(round_to_start, int(tournoi["number_of_round"]) + 1):
-                    start_time = str(Round.creation_round())
+                last_round_played = int(tournoi["rounds"][-1]["round"])
+                matches = Report.display_matches_per_round(tournoi["id"], last_round_played)
+                for i in range(last_round_played + 1, int(tournoi["number_of_round"]) + 1):
+                    start_time = str(Round.creation_round(self))
                     round = Round(i, matches, start_time)
                     print("debut", start_time)
                     print(f"Liste des matchs du tour {i}:")

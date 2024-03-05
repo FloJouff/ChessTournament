@@ -94,13 +94,13 @@ class ReportController:
                 print("")
                 choice = input("Pour quel tournoi souhaitez vous ces informations? ")
                 id_tournoi = tournoi[int(choice)]["id"]
-                round = input("De quel tour voulez-vous les matchs?")
-                data = Report.display_matches_per_round(id_tournoi, round)
-                datas = [tournoi[int(choice)]["id"],
-                         tournoi[int(choice)]["name"], round, data]
-                filename = tournoi[int(choice)]["name"], f"round{round}", "Matchs"
+                filename = tournoi[int(choice)]["name"], "Matchs"
                 fieldnames = ["id", "name", "round", "matchs"]
-                Report.add_data_to_csv(filename, fieldnames, datas)
+                round_list = Report.display_rounds_matchs(id_tournoi)
+                for list in round_list:
+                    datas = [tournoi[int(choice)]["id"],
+                            tournoi[int(choice)]["name"], list[0], list[1]]
+                    Report.add_data_to_csv(filename, fieldnames, datas)
             elif choix == "0":
                 print("Quitter")
                 break

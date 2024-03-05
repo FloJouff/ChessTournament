@@ -106,3 +106,21 @@ class Report:
                             print(f"Matchs du tour {round_nb}:", round_dict["matchs"])
                             break
         return tournament
+
+    def display_rounds_matchs(id):
+        tournament = None
+        round_list = []
+        with open("data/tournaments.json", "r") as f:
+            data = json.load(f)
+            for tournament_dict in data:
+                if tournament_dict["id"] == id:
+                    for round_dict in tournament_dict["rounds"]:
+                        for i in range(0, int(len(round_dict["matchs"]))):
+                            for j in range(0, 2):
+                                joueur = Player.load_player_by_id(round_dict["matchs"][i][j][0])
+                                round_dict["matchs"][i][j][0] = joueur
+                            tournament = [round_dict["round"], round_dict["matchs"]]
+                        round_list.append(tournament)
+                        print("tour:", round_dict["round"], "matchs:", round_dict["matchs"])
+                    break
+        return round_list
