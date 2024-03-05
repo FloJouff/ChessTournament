@@ -98,11 +98,11 @@ class Report:
                 if tournament_dict["id"] == id:
                     for round_dict in tournament_dict["rounds"]:
                         if round_dict["round"] == int(round_nb):
-                            print(f"Matchs du tour {round_nb}:", round_dict["matchs"])
                             for i in range(0, int(len(round_dict["matchs"]))):
                                 for j in range(0, 2):
                                     joueur = Player.load_player_by_id(round_dict["matchs"][i][j][0])
                                     round_dict["matchs"][i][j][0] = joueur
                                     tournament = round_dict["matchs"]
+                            print(f"Matchs du tour {round_nb}:", round_dict["matchs"])
                             break
         return tournament

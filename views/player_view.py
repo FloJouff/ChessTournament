@@ -1,4 +1,5 @@
 from models.player import Player
+import Constantes.constantes as constante
 from datetime import datetime
 from typing import List
 
@@ -57,9 +58,9 @@ class PlayerView:
         print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
         print("----------------  MENU DES JOUEURS  ---------------")
         print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
-        print("1 --> Pour Ajouter un joueur")
-        print("2 --> Pour afficher tous les joueurs")
-        print("3 --> Rechercher un joueur par son INE :")
+        print(f"{constante.ADD_PLAYER} --> Pour Ajouter un joueur")
+        print(f"{constante.DISPLAY_PLAYERS} --> Pour afficher tous les joueurs")
+        print(f"{constante.DISPLAY_PLAYER_BY_INE} --> Rechercher un joueur par son INE :")
         print("0 --> Retour au menu précédent")
         print("")
         return input("Votre choix: ")

@@ -42,20 +42,9 @@ Exécuter à partir d'un terminal de commande le fichier main.py:
 
     $ python main.py
 
-Un menu à choix multiples s'ouvre.
+Un menu à choix multiples s'ouvre:
 
-        ("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        ("--BIENVENUE SUR LE GESTIONNAIRE DE TOURNOIS D'ECHECS--")
-        ("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        ("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        ("------------------  MENU PRINCIPAL  ------------------")
-        ("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        ("1 --> Pour accéder au menu des joueurs")
-        ("2 --> Pour accéder au menu des tournoi")
-        ("3 --> Pour accéder au menu des rapports")
-        ("0 --> Pour Quitter")
-
-        ("Votre choix: ")
+![alt text](image.png)
 
 D'autres menus s'ouvriront en fonction de vos besoins.
 

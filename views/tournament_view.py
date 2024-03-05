@@ -1,11 +1,11 @@
 from models.tournament import Tournament
 from views.player_view import PlayerView
+import Constantes.constantes as constante
 
 
 class TournamentView:
     def __init__(self) -> None:
-        self.tournament = Tournament("", "", "",
-                                     "", "")
+        self.tournament = Tournament("", "", "", "", "")
 
     def display_tournament(self):
         print(self.name, self.place)
@@ -24,19 +24,23 @@ class TournamentView:
                 break
         description = input("Tapez votre commentaire concernant ce tournoi: ")
         number_of_round = int(input("Nombre de tour pour ce tournoi: "))
-        return {"name": name, "place": place,
-                "start_date": start_date, "end_date": end_date,
-                "number_of_round": number_of_round, "description": description}
+        return {
+            "name": name,
+            "place": place,
+            "start_date": start_date,
+            "end_date": end_date,
+            "number_of_round": number_of_round,
+            "description": description,
+        }
 
     def menu_tournoi(self):
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
         print("---------------  MENU DES TOURNOIS  ----------------")
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        print("1 --> Pour enregistrer les informations d'un nouveau tournoi ")
-        print("2 --> Pour afficher la liste des tournois ")
-        print("3 --> Pour charger les données d'un tournoi enregistré: ")
-        print("4 --> Pour lancer un nouveau tournoi ")
-        print("5 --> Pour reprendre un tournoi en cours. ")
+        print(f"{constante.CREATE_TOURNAMENT} --> Pour enregistrer les informations d'un nouveau tournoi ")
+        print(f"{constante.DISPLAY_TOURNAMENTS} --> Pour afficher la liste des tournois ")
+        print(f"{constante.START_NEW_TOURNAMENT} --> Pour lancer un nouveau tournoi ")
+        print(f"{constante.RESUME_TOURNAMENT} --> Pour reprendre un tournoi en cours. ")
         print("0 --> Retour au menu précédent")
         print("")
         return input("Votre choix: ")
@@ -52,13 +56,16 @@ class MatchView:
             result_lower = result.lower()
             if result_lower == "j1":
                 player1[1] = player1[1] + 1
+                print(f"Vainqueur: {player1[0]}")
                 break
             elif result_lower == "j2":
                 player2[1] = player2[1] + 1
+                print(f"Vainqueur: {player2[0]}")
                 break
             elif result_lower == "nul":
                 player1[1] = player1[1] + 0.5
                 player2[1] = player2[1] + 0.5
+                print(f"Match nul. Les joueurs {player1[0]} et {player2[0]} gagnent 0.5 points")
                 break
             else:
                 print("Saisie incorrecte")

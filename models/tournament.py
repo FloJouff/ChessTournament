@@ -104,9 +104,9 @@ class Round:
             matchs_json.append([[m[0][0].id, m[0][1]], [m[1][0].id, m[1][1]]])
         return {
             "round": self.round_nb,
-            "start_time": str(self.start_time),
+            "start_date": str(self.start_time),
             "matchs": matchs_json,
-            "end_time": str(self.end_time),
+            "end_date": str(self.end_time),
         }
 
     # incription de l'heure du début du tour.
@@ -121,10 +121,9 @@ class Round:
     # incription de l'heure du fin du tour.
 
     def round_closure(self):
-        print("Fin du tour")
         round_end = datetime.now()
         print("")
-        print("Le tour en cours s'est terminé à :", round_end)
+        print("Ce tour s'est terminé à :", round_end)
         print("")
         return round_end
 

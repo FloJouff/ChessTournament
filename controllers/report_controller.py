@@ -1,4 +1,5 @@
 from views.report_view import ReportView
+import Constantes.constantes as constante
 from models.report import Report
 from models.player import Player
 from operator import attrgetter
@@ -12,7 +13,7 @@ class ReportController:
         choix = ""
         while (choix != "0"):
             choix = self.reportview.menu_report()
-            if choix == "1":
+            if choix == constante.DISPLAY_TOURNAMENT_LIST:
                 data = Report.display_tournaments(self)
                 for i in range(len(data)):
                     datas = [data[i]["id"], data[i]["name"], data[i]["place"],
@@ -25,7 +26,7 @@ class ReportController:
                                   "end_date", "players", "description",
                                   "Nb_of_round", "rounds", "status"]
                     Report.add_data_to_csv(filename, fieldnames, datas)
-            elif choix == "2":
+            elif choix == constante.DISPLAY_PLAYERS_LIST:
                 data = Player.load_all_players(self)
                 print("Liste de tous les joueurs enregistrés dans le fichier:")
                 data = sorted(data, key=attrgetter('name'))
@@ -39,7 +40,7 @@ class ReportController:
                     fieldnames = ["id", "nom", "prénom", "sexe",
                                   "date de naissance", "ine"]
                     Report.add_data_to_csv(filename, fieldnames, datas)
-            elif choix == "3":
+            elif choix == constante.DISPLAY_TOURNAMENT_NAME_DATES:
                 print("Liste des tournois: ")
                 tournoi = Report.display_tournaments(self)
                 print("")
@@ -54,7 +55,7 @@ class ReportController:
                 filename = data.name
                 fieldnames = ["id", "nom", "Date de début", "Date de fin"]
                 Report.add_data_to_csv(filename, fieldnames, datas)
-            elif choix == "4":
+            elif choix == constante.DISPLAY_TOURNAMENT_LIST_PLAYER:
                 print("Liste des tournois: ")
                 tournoi = Report.display_tournaments(self)
                 print("")
@@ -72,7 +73,7 @@ class ReportController:
                     Report.add_data_to_csv(filename, fieldnames, i)
                 print("Participants :", players)
                 print("")
-            elif choix == "5":
+            elif choix == constante.DISPLAY_TOURNAMENT_NUMBER_OF_ROUND:
                 print("Liste des tournois: ")
                 tournoi = Report.display_tournaments(self)
                 print("")
@@ -87,7 +88,7 @@ class ReportController:
                 Report.add_data_to_csv(filename, fieldnames, datas)
                 print(f"Nombre de tours du tournoi de {tournoi[int(choice)]["name"]} :", data)
                 print("")
-            elif choix == "6":
+            elif choix == constante.DISPLAY_TOURNAMENT_LIST_OF_MATCHS:
                 print("Liste des tournois: ")
                 tournoi = Report.display_tournaments(self)
                 print("")

@@ -3,6 +3,7 @@ from models.tournament import Tournament, Round
 from models.player import Player
 from models.report import Report
 from views.player_view import PlayerView
+import Constantes.constantes as constante
 import random
 import copy
 import json
@@ -17,7 +18,7 @@ class TournamentController:
         choix = ""
         while choix != "0":
             choix = self.tournamentview.menu_tournoi()
-            if choix == "1":
+            if choix == constante.CREATE_TOURNAMENT:
                 data = self.tournamentview.get_tournament_infos()
                 print(data)
                 tournoi = Tournament(
@@ -31,16 +32,12 @@ class TournamentController:
                 print("Ajouter les joueurs au tournoi")
                 self.generate_list_of_player(tournoi)
                 tournoi.create_tournament()
-            elif choix == "2":
+            elif choix == constante.DISPLAY_TOURNAMENTS:
                 Report.display_tournaments(self)
-            elif choix == "3":
-                id = input("Veuillez saisir l'id du tournoi souhaité: ")
-                tournoi = Tournament.load_tournament_by_id(id)
-                print(tournoi)
-            elif choix == "4":
+            elif choix == constante.START_NEW_TOURNAMENT:
                 tournoi = self.load_tournament_start()
                 matches = self.round1_generating_matches(tournoi)
-                for i in range(1, int(tournoi["number_of_round"])+1):
+                for i in range(1, int(tournoi["number_of_round"]) + 1):
                     start_time = str(Round.creation_round(self))
                     round = Round(i, matches, start_time)
                     print("debut", start_time)
@@ -60,10 +57,10 @@ class TournamentController:
                 print(f"le vainqueur du tournoi {tournoi["name"]} est {players_and_score1[0]}")
                 id = str(tournoi["id"])
                 Tournament.close_tournament(id)
-            elif choix == "5":
+            elif choix == constante.RESUME_TOURNAMENT:
                 tournoi = self.load_tournament_inprogress()
                 round_to_start = int(input("Indiquez à partir de quel round vous voulez reprendre ce tournoi :"))
-                matches = Report.display_matches_per_round(tournoi["id"], round_to_start-1)
+                matches = Report.display_matches_per_round(tournoi["id"], round_to_start - 1)
                 print("match: ", matches)
                 for i in range(round_to_start, int(tournoi["number_of_round"]) + 1):
                     start_time = str(Round.creation_round())
@@ -82,6 +79,7 @@ class TournamentController:
                     round.save_round(tournoi["id"])
                     print("")
                 print(f"le vainqueur du tournoi {tournoi["name"]} est {players_and_score1[0]}")
+                print("")
                 id = str(tournoi["id"])
                 Tournament.close_tournament(id)
             elif choix == "0":
@@ -95,7 +93,11 @@ class TournamentController:
         while (len(tournoi.players) < int(nb_participants)):
             choix = input("Saissez le numéro du joueur à inclure dans le tournoi: ")
             id_player = players[int(choix)].id
-            tournoi.players.append(id_player)
+            if id_player not in tournoi.players:
+                tournoi.players.append(id_player)
+            else:
+                print("Ce joueur est déjà inscrit à ce tournoi")
+                return False
         return players
 
     def display_list_participants_with_score(self, tournoi):
@@ -143,16 +145,16 @@ class TournamentController:
         print("Liste des joueurs par ordre décroissant de score: ",
               players_and_score)
         print("")
-        matchs_played = []
         matchs_played = copy.copy(matches)
         matches = []
         for i in range(0, len(players_and_score), 2):
             if i + 2 < len(players_and_score):
                 joueur1 = players_and_score[i]
-                if (players_and_score[i], players_and_score[i+1]) in matchs_played:
-                    joueur2 = players_and_score[i+2]
-                else:
-                    joueur2 = players_and_score[i + 1]
+                if ((players_and_score[i], players_and_score[i + 1]) in matchs_played) or ((players_and_score[i + 1], players_and_score[i]) in matchs_played):
+                    temp = players_and_score[i + 1]
+                    players_and_score[i + 1] = players_and_score[i + 2]
+                    players_and_score[i + 2] = temp
+                joueur2 = players_and_score[i + 1]
             matches.append((joueur1, joueur2))
         return matches
 
