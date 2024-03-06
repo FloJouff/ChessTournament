@@ -147,6 +147,10 @@ class TournamentController:
         print("")
         return players_and_score
 
+# Création d'une liste triée en fonction du score, sans répétition, de tous les participants
+# si le match a déjà été joué, et si le tri du score est encore respecté,
+# ce match est remplacé
+
     def score_based_generating_matches(self, players_and_score):
         random.shuffle(players_and_score)
         players_and_score.sort(key=lambda x: x[1], reverse=True)
@@ -167,7 +171,6 @@ class TournamentController:
 
     def load_tournament_inprogress(self):
         with open("data/tournaments.json", "r") as f:
-
             data = json.load(f)
         tournoi = []
         for d in data:

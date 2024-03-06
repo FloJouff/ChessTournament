@@ -4,10 +4,6 @@ from controllers.report_controller import ReportController
 from views.main_view import MainView
 import Constantes.constantes as constante
 
-""" Controlleur principal qui gère les interactions
-entre les vues et les autres controlleurs
-"""
-
 
 class MainController:
     def __init__(self) -> None:

@@ -121,6 +121,6 @@ class Report:
                                 round_dict["matchs"][i][j][0] = joueur
                             tournament = [round_dict["round"], round_dict["matchs"]]
                         round_list.append(tournament)
-                        print("tour:", round_dict["round"], "matchs:", round_dict["matchs"])
+                        print("Tour:", round_dict["round"], "Matchs:", round_dict["matchs"])
                     break
         return round_list

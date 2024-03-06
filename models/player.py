@@ -4,8 +4,7 @@ import re
 
 
 class Player:
-    def __init__(self, name, first_name, gender, date_of_birth, ine,
-                 id=uuid.uuid4()):
+    def __init__(self, name, first_name, gender, date_of_birth, ine, id=uuid.uuid4()):
         self.name = name
         self.first_name = first_name
         self.gender = gender
@@ -21,10 +20,14 @@ class Player:
         return str(self)
 
     def to_dict(self):
-        return {"id": str(self.id), "name": self.name,
-                "first_name": self.first_name,
-                "gender": self.gender, "date_of_birth": self.date_of_birth,
-                "ine": self.ine}
+        return {
+            "id": str(self.id),
+            "name": self.name,
+            "first_name": self.first_name,
+            "gender": self.gender,
+            "date_of_birth": self.date_of_birth,
+            "ine": self.ine,
+        }
 
     def save(self):
         with open("data/player_data.json", "r") as f:
@@ -39,10 +42,14 @@ class Player:
         with open("data/player_data.json", "r") as f:
             data = json.load(f)
             for player_dict in data:
-                p = Player(player_dict["name"],
-                           player_dict["first_name"],
-                           player_dict["gender"], player_dict["date_of_birth"],
-                           player_dict["ine"], player_dict["id"])
+                p = Player(
+                    player_dict["name"],
+                    player_dict["first_name"],
+                    player_dict["gender"],
+                    player_dict["date_of_birth"],
+                    player_dict["ine"],
+                    player_dict["id"],
+                )
                 player_list.append(p)
         return player_list
 
@@ -51,13 +58,15 @@ class Player:
         with open("data/player_data.json", "r") as f:
             data = json.load(f)
             for player_dict in data:
-                if player_dict['id'] == id:
-                    player = Player(player_dict["name"],
-                                    player_dict["first_name"],
-                                    player_dict["gender"],
-                                    player_dict["date_of_birth"],
-                                    player_dict["ine"],
-                                    player_dict["id"])
+                if player_dict["id"] == id:
+                    player = Player(
+                        player_dict["name"],
+                        player_dict["first_name"],
+                        player_dict["gender"],
+                        player_dict["date_of_birth"],
+                        player_dict["ine"],
+                        player_dict["id"],
+                    )
                     break
         return player
 
@@ -66,13 +75,15 @@ class Player:
         with open("data/player_data.json", "r") as f:
             data = json.load(f)
             for player_dict in data:
-                if player_dict['ine'] == ine:
-                    player = Player(player_dict["name"],
-                                    player_dict["first_name"],
-                                    player_dict["gender"],
-                                    player_dict["date_of_birth"],
-                                    player_dict["id"],
-                                    player_dict["ine"])
+                if player_dict["ine"] == ine:
+                    player = Player(
+                        player_dict["name"],
+                        player_dict["first_name"],
+                        player_dict["gender"],
+                        player_dict["date_of_birth"],
+                        player_dict["id"],
+                        player_dict["ine"],
+                    )
                     break
         return player
 
@@ -80,7 +91,7 @@ class Player:
         # Verification que l'INE indiqué n'existe pas déjà:
         with open("data/player_data.json", "r") as f:
             data = json.load(f)
-            if any(element.get('ine') == new_ine for element in data):
+            if any(element.get("ine") == new_ine for element in data):
                 print(f"Cet INE {new_ine} existe déjà dans le fichier json")
                 return False
         # Vérification que le format de l'INE est correct:

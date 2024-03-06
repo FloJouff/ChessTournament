@@ -18,13 +18,12 @@ class ReportController:
                 for i in range(len(data)):
                     datas = [data[i]["id"], data[i]["name"], data[i]["place"],
                              data[i]["start_date"], data[i]["end_date"],
-                             data[i]["players"], data[i]["description"],
-                             data[i]["number_of_round"], data[i]["rounds"],
-                             data[i]["status"]]
+                             data[i]["description"],
+                             data[i]["number_of_round"], data[i]["status"]]
                     filename = "tournois"
                     fieldnames = ["id", "nom", "lieu", "start_date",
-                                  "end_date", "players", "description",
-                                  "Nb_of_round", "rounds", "status"]
+                                  "end_date", "description",
+                                  "Nb_of_round", "status"]
                     Report.add_data_to_csv(filename, fieldnames, datas)
             elif choix == constante.DISPLAY_PLAYERS_LIST:
                 data = Player.load_all_players(self)
@@ -98,8 +97,7 @@ class ReportController:
                 fieldnames = ["id", "name", "round", "matchs"]
                 round_list = Report.display_rounds_matchs(id_tournoi)
                 for list in round_list:
-                    datas = [tournoi[int(choice)]["id"],
-                            tournoi[int(choice)]["name"], list[0], list[1]]
+                    datas = [tournoi[int(choice)]["id"], tournoi[int(choice)]["name"], list[0], list[1]]
                     Report.add_data_to_csv(filename, fieldnames, datas)
             elif choix == "0":
                 print("Quitter")

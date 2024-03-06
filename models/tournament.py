@@ -101,7 +101,7 @@ class Round:
     def to_dict(self):
         matchs_json = []
         for m in self.matches:
-            matchs_json.append([[m[0][0].id, m[0][1]], [m[1][0].id, m[1][1]]])
+            matchs_json.append(([m[0][0].id, m[0][1]], [m[1][0].id, m[1][1]]))
         return {
             "round": self.round_nb,
             "start_date": str(self.start_time),
