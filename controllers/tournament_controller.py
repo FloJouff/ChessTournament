@@ -12,10 +12,14 @@ matchs_played = []
 
 class TournamentController:
     def __init__(self) -> None:
+        """Tournament Controller's constructor
+        """
         self.tournamentview = TournamentView()
         self.playerviews = PlayerView()
 
     def run_tournament(self):
+        """Run tournament according user's choices
+        """
         choix = ""
         while choix != "0":
             choix = self.tournamentview.menu_tournoi()
@@ -56,9 +60,7 @@ class TournamentController:
                     Tournament.change_status_start_inprogress(id)
                     round.save_round(tournoi["id"])
                     print("")
-                print(f"le vainqueur du tournoi {tournoi["name"]} est {players_and_score[0]}")
-                id = str(tournoi["id"])
-                Tournament.close_tournament(id)
+                self.end_tournament(players_and_score, tournoi)
             elif choix == constante.RESUME_TOURNAMENT:
                 tournoi = self.load_tournament_inprogress()
                 last_round_played = int(tournoi["rounds"][-1]["round"])
@@ -79,15 +81,20 @@ class TournamentController:
                     print(f"Fin du tour {i}")
                     round.save_round(tournoi["id"])
                     print("")
-                print(f"le vainqueur du tournoi {tournoi["name"]} est {players_and_score[0]}")
-                print("")
-                id = str(tournoi["id"])
-                Tournament.close_tournament(id)
+                self.end_tournament(players_and_score, tournoi)
             elif choix == "0":
                 print("Quitter")
                 break
 
     def generate_list_of_player(self, tournoi):
+        """Create list of players for tournament
+
+        Args:
+            tournoi (object)
+
+        Returns:
+            players(list): list of players
+        """
         players = Player.load_all_players(self)
         self.playerviews.display_list_players(players)
         nb_participants = input("Indiquez le nombre de participants à ce tournoi: ")
@@ -102,6 +109,14 @@ class TournamentController:
         return players
 
     def display_list_participants_with_score(self, tournoi):
+        """Create list of player with score
+
+        Args:
+            tournoi (object): 
+
+        Returns:
+            players_and_score(list): list of player with score
+        """
         players = tournoi["players"]
         players_name = [Player.load_player_by_id(player) for player in players]
         scores = {player: 0.0 for player in players_name}
@@ -109,16 +124,26 @@ class TournamentController:
         return players_and_score
 
     def check_played_matchs(self, matchs):
+        """Check if match has already been played
+
+        Args:
+            matchs (list): list of matchs
+        """
         if matchs in matchs_played:
             return True
         else:
             matchs_played.append(matchs)
             return False
 
-# Création d'une liste aléatoire, sans répétition, de tous les participants
-# pour le premier tour uniquement
-
     def round1_generating_matches(self, tournoi):
+        """Create first round's matchs
+
+        Args:
+            tournoi (): objet tournoi en cours
+
+        Returns:
+            matches1(List): List of matchs for first round
+        """
         players_and_score = self.display_list_participants_with_score(tournoi)
         matches1 = []
         while len(players_and_score) >= 2:
@@ -132,6 +157,14 @@ class TournamentController:
         return matches1
 
     def match_resolution(self, matches):
+        """Resolution des matchs
+
+        Args:
+            matches (list): Liste des matchs du tour
+
+        Returns:
+            List: liste des joueurs avec leur score à l'issu du tour
+        """
         for match in matches:
             print("-------------------------------------------")
             MatchView.display_match(match[0], match[1])
@@ -147,11 +180,15 @@ class TournamentController:
         print("")
         return players_and_score
 
-# Création d'une liste triée en fonction du score, sans répétition, de tous les participants
-# si le match a déjà été joué, et si le tri du score est encore respecté,
-# ce match est remplacé
-
     def score_based_generating_matches(self, players_and_score):
+        """Create list of matchs based on score
+
+        Args:
+            players_and_score (list): list of player with score
+
+        Returns:
+           List : matchs du tour suivant
+        """
         random.shuffle(players_and_score)
         players_and_score.sort(key=lambda x: x[1], reverse=True)
         print("Liste des joueurs par ordre décroissant de score: ",
@@ -170,6 +207,11 @@ class TournamentController:
         return matches
 
     def load_tournament_inprogress(self):
+        """Charge la liste des tournois déjà démarrés
+
+        Returns:
+            Objet tournoi: status: "inprogress"
+        """
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
         tournoi = []
@@ -186,6 +228,11 @@ class TournamentController:
         return tournoi
 
     def load_tournament_start(self):
+        """Charge la liste des tournois non démarrés
+
+        Returns:
+            Objet tournoi: status: "tostart"
+        """
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
         tournament = []
@@ -200,3 +247,18 @@ class TournamentController:
         choix = input("Saissez le numéro du tournoi à démarrer: ")
         tournoi = tournament[int(choix)]
         return tournoi
+
+    def end_tournament(self, players_and_score, tournoi):
+        """Close tournament's status and display winner with score
+
+        Args:
+            players_and_score (list): list of player with score
+            tournoi (): objet tournoi en cours
+        """
+        if players_and_score[0][1] == players_and_score[1][1]:
+            print(f"Au score final, égalité entre les joueurs {players_and_score[0]} et {players_and_score[1]}")
+        else:
+            print(f"le vainqueur du tournoi {tournoi["name"]} est {players_and_score[0]}")
+            print("")
+        id = str(tournoi["id"])
+        Tournament.close_tournament(id)

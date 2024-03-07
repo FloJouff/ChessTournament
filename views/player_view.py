@@ -6,9 +6,15 @@ from typing import List
 
 class PlayerView:
     def afficher_player(self):
+        """display a player"""
         print(Player.name, Player.first_name, Player.score)
 
     def display_list_players(self, players: List[Player]):
+        """Display list of all players
+
+        Args:
+            players (List[Player])
+        """
         print("Afficher tous les joueurs: ")
         i = 0
         for player in players:
@@ -16,6 +22,11 @@ class PlayerView:
             i = i + 1
 
     def date_validation(date_str):
+        """Validate date format
+
+        Args:
+            date_str (str): date
+        """
         try:
             # Convertir la chaîne en objet datetime
             date_obj = datetime.strptime(date_str, "%d/%m/%Y")
@@ -34,6 +45,11 @@ class PlayerView:
             return False
 
     def get_player_infos(self):
+        """Get new player's datas
+
+        Returns:
+            player's datas
+        """
         print("Veuillez rentrer les informations du joueur: ")
         name = input("Nom: ")
         first_name = input("Prénom: ")

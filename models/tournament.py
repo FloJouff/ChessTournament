@@ -5,6 +5,17 @@ import json
 
 class Tournament:
     def __init__(self, name, place, start_date, end_date, description, number_of_round=4, id=uuid.uuid4()):
+        """Constructor of tournament's object
+
+        Args:
+            name (str): tournament's name
+            place (str): tournament's place
+            start_date (str): tournament's start date
+            end_date (str): tournament's end date
+            description (str): tournament's description
+            number_of_round (int, optional): _description_. Defaults to 4.
+            id (str, optional): _description_. Defaults to uuid.uuid4().
+        """
         self.name = name
         self.place = place
         self.start_date = start_date
@@ -34,6 +45,7 @@ class Tournament:
         }
 
     def create_tournament(self):
+        """Create new tournament in json"""
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
         tournament_data = self.to_dict()
@@ -43,6 +55,14 @@ class Tournament:
 
     @staticmethod
     def load_tournament_by_id(id):
+        """Load tournament by id
+
+        Args:
+            id (str): tournament's id
+
+        Returns:
+            tournament(object): tournament's instance
+        """
         tournament = None
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
@@ -62,6 +82,11 @@ class Tournament:
 
     @staticmethod
     def change_status_start_inprogress(id):
+        """Change tournament's status from tostart to inprogress
+
+        Args:
+            id (str): round's id
+        """
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
         tournoi = None
@@ -77,6 +102,11 @@ class Tournament:
 
     @staticmethod
     def close_tournament(id):
+        """Change tournament's status to done
+
+        Args:
+            id (str): round's id
+        """
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
         tournoi = None
@@ -93,6 +123,14 @@ class Tournament:
 
 class Round:
     def __init__(self, round_nb, matches, start_time="", end_time=""):
+        """Constructor of object round
+
+        Args:
+            round_nb (int): _description_
+            matches (list): _description_
+            start_time (str, optional): beginning of round. Defaults to "".
+            end_time (str, optional): end of round. Defaults to "".
+        """
         self.round_nb = round_nb
         self.start_time = start_time
         self.matches = matches
@@ -109,8 +147,12 @@ class Round:
             "end_date": str(self.end_time),
         }
 
-    # incription de l'heure du début du tour.
     def creation_round(self):
+        """Records start date
+
+        Returns:
+            round_start(datetime): beginning of turn
+        """
         print("Début d'un nouveau tour")
         round_start = datetime.now()
         print("")
@@ -118,9 +160,12 @@ class Round:
         print("")
         return round_start
 
-    # incription de l'heure du fin du tour.
-
     def round_closure(self):
+        """Records end date
+
+        Returns:
+            round_end(datetime): end of turn
+        """
         round_end = datetime.now()
         print("")
         print("Ce tour s'est terminé à :", round_end)
@@ -128,6 +173,11 @@ class Round:
         return round_end
 
     def save_round(self, id):
+        """Save round on json file
+
+        Args:
+            id (str): tournament's id
+        """
         with open("data/tournaments.json", "r") as fichier:
             data = json.load(fichier)
         # Rechercher l'élément avec l'id spécifiée

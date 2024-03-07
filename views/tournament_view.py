@@ -8,9 +8,15 @@ class TournamentView:
         self.tournament = Tournament("", "", "", "", "")
 
     def display_tournament(self):
+        """Display tournament name and place"""
         print(self.name, self.place)
 
     def get_tournament_infos(self):
+        """Get tournament datas
+
+        Returns:
+            dict: tournament key/value
+        """
         print("Rentrer les informations du tournoi ")
         name = input("Nom du tournoi:")
         place = input("Lieu: ")
@@ -48,9 +54,21 @@ class TournamentView:
 
 class MatchView:
     def display_match(player1, player2):
+        """Display match players
+
+        Args:
+            player1 (object Player)
+            player2 (object Player)
+        """
         print(player1, " vs ", player2)
 
     def match_results_entry(player1, player2):
+        """Entering match results
+
+        Args:
+            player1 (object Player)
+            player2 (object Player)
+        """
         while True:
             result = input(f"Veuillez indiquer le resultat du match {player1[0]} vs {player2[0]} (J1, J2 ou nul): ")
             result_lower = result.lower()

@@ -7,6 +7,13 @@ import csv
 
 class Report:
     def add_data_to_csv(file_name, fieldnames, data):
+        """Add datas to csv file
+
+        Args:
+            file_name (str)
+            fieldnames (str)
+            data (list)
+        """
         os.makedirs("fichiers_csv", exist_ok=True)
         if os.path.isfile("fichiers_csv" + "//" + f"{file_name}.csv"):
             with open("fichiers_csv" + "//" + f"{file_name}.csv", "a", encoding="UTF-8-sig") as fichier_csv:
@@ -20,14 +27,19 @@ class Report:
                 writer.writerow(data)
 
     def all_players_list_report(self):
+        """Display all players recorded on json file"""
         with open("data/player_data.json", "r") as f:
             data = json.loads(f.read())
             print(data)
 
     def display_tournaments(self):
+        """Display list of tournaments recorded on json file
+
+        Returns:
+            list: _description_
+        """
         with open("data/tournaments.json", "r") as f:
             data = json.loads(f.read())
-
         tournament = []
         for d in data:
             tournament.append(d)
@@ -53,6 +65,14 @@ class Report:
         return data
 
     def load_tournament_by_id(id):
+        """Load a tournament by his id
+
+        Args:
+            id (str): tournament's id
+
+        Returns:
+            object tournament
+        """
         tournament = None
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
@@ -71,6 +91,14 @@ class Report:
         return tournament
 
     def get_tournament_participants_by_id(id):
+        """Get a tournament's list of players
+
+        Args:
+            id (str): tournament's id
+
+        Returns:
+            list of players
+        """
         tournament = None
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
@@ -81,6 +109,14 @@ class Report:
         return tournament
 
     def get_tournament_numb_of_round_by_id(id):
+        """Get the number of round for a turnament
+
+        Args:
+            id (str): tournament's id
+
+        Returns:
+            number_of_round(int)
+        """
         tournament = None
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
@@ -91,6 +127,15 @@ class Report:
         return tournament
 
     def display_matches_per_round(id, round_nb):
+        """display list of matchs per round
+
+        Args:
+            id (str): tournament's id
+            round_nb (int): round of the number
+
+        Returns:
+            matchs(list): list of matchs
+        """
         tournament = None
         with open("data/tournaments.json", "r") as f:
             data = json.load(f)
@@ -108,6 +153,14 @@ class Report:
         return tournament
 
     def display_rounds_matchs(id):
+        """display list of matchs for all rounds of a turnament
+
+        Args:
+            id (str): tournament's id
+
+        Returns:
+            round_list(list): list of matchs for all rounds
+        """
         tournament = None
         round_list = []
         with open("data/tournaments.json", "r") as f:

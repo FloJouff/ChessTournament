@@ -40,11 +40,7 @@ class ReportController:
                                   "date de naissance", "ine"]
                     Report.add_data_to_csv(filename, fieldnames, datas)
             elif choix == constante.DISPLAY_TOURNAMENT_NAME_DATES:
-                print("Liste des tournois: ")
-                tournoi = Report.display_tournaments(self)
-                print("")
-                choice = input("Pour quel tournoi souhaitez vous ces informations? ")
-                id_tournoi = tournoi[int(choice)]["id"]
+                id_tournoi = ReportView.get_input(self)
                 data = Report.load_tournament_by_id(id_tournoi)
                 print("")
                 print("Nom du tournoi :", data.name, "Date de début: ",

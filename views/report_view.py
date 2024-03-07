@@ -1,4 +1,5 @@
 import Constantes.constantes as constante
+from models.report import Report
 
 
 class ReportView:
@@ -15,3 +16,11 @@ class ReportView:
         print("0 --> Retour au menu précédent")
         print("")
         return input("Votre choix: ")
+
+    def get_input(self):
+        print("Liste des tournois: ")
+        tournoi = Report.display_tournaments(self)
+        print("")
+        choice = input("Pour quel tournoi souhaitez vous ces informations? ")
+        id_tournoi = tournoi[int(choice)]["id"]
+        return id_tournoi
