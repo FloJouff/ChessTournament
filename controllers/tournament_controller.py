@@ -52,7 +52,8 @@ class TournamentController:
                     print("")
                     print(f"Saisissez les résultats de match du tour{i}")
                     players_and_score = self.match_resolution(round.matches)
-                    self.check_played_matchs(round.matches)
+                    for match in round.matches:
+                        self.check_played_matchs(match)
                     matches = self.score_based_generating_matches(players_and_score)
                     round.end_time = round.round_closure()
                     print(f"Fin du tour {i}")
@@ -75,7 +76,8 @@ class TournamentController:
                     print("")
                     print(f"Saisissez les résultats de match du tour{i}")
                     players_and_score = self.match_resolution(round.matches)
-                    self.check_played_matchs(round.matches)
+                    for match in round.matches:
+                        self.check_played_matchs(match)
                     matches = self.score_based_generating_matches(players_and_score)
                     round.end_time = round.round_closure()
                     print(f"Fin du tour {i}")
@@ -123,16 +125,16 @@ class TournamentController:
         players_and_score = [[player, scores[player]] for player in players_name]
         return players_and_score
 
-    def check_played_matchs(self, matchs):
+    def check_played_matchs(self, match):
         """Check if match has already been played
 
         Args:
-            matchs (list): list of matchs
+            match (list): list of matchs
         """
-        if matchs in matchs_played:
+        if match in matchs_played:
             return True
         else:
-            matchs_played.append(matchs)
+            matchs_played.append(match)
             return False
 
     def round1_generating_matches(self, tournoi):
@@ -198,7 +200,7 @@ class TournamentController:
         for i in range(0, len(players_and_score), 2):
             if i + 1 < len(players_and_score):
                 joueur1 = players_and_score[i]
-                if ((players_and_score[i], players_and_score[i + 1]) in matchs_played) or ((players_and_score[i + 1], players_and_score[i]) in matchs_played):
+                if (((players_and_score[i], players_and_score[i + 1]) in matchs_played) or ((players_and_score[i + 1], players_and_score[i]) in matchs_played)) and (i < len(players_and_score) - 2):
                     temp = players_and_score[i + 1]
                     players_and_score[i + 1] = players_and_score[i + 2]
                     players_and_score[i + 2] = temp
@@ -255,10 +257,16 @@ class TournamentController:
             players_and_score (list): list of player with score
             tournoi (): objet tournoi en cours
         """
-        if players_and_score[0][1] == players_and_score[1][1]:
-            print(f"Au score final, égalité entre les joueurs {players_and_score[0]} et {players_and_score[1]}")
+        players_and_score.sort(key=lambda x: x[1], reverse=True)
+        score_max = players_and_score[0][1]
+        max_score_players = []
+        for player in players_and_score:
+            if player[1] == score_max:
+                max_score_players.append(player)
+
+        if len(max_score_players) > 1:
+            print(f"Au score final, égalité entre les joueurs {max_score_players}")
         else:
             print(f"le vainqueur du tournoi {tournoi["name"]} est {players_and_score[0]}")
-            print("")
         id = str(tournoi["id"])
         Tournament.close_tournament(id)
