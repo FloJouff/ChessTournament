@@ -12,7 +12,7 @@ matchs_played = []
 
 class TournamentController:
     def __init__(self) -> None:
-        """Tournament Controller's constructor
+        """TournamentController's constructor
         """
         self.tournamentview = TournamentView()
         self.playerviews = PlayerView()
@@ -159,13 +159,13 @@ class TournamentController:
         return matches1
 
     def match_resolution(self, matches):
-        """Resolution des matchs
+        """Matchs scores resolution
 
         Args:
             matches (list): Liste des matchs du tour
 
         Returns:
-            List: liste des joueurs avec leur score à l'issu du tour
+            List: list of players with new scores
         """
         for match in matches:
             print("-------------------------------------------")
@@ -209,7 +209,7 @@ class TournamentController:
         return matches
 
     def load_tournament_inprogress(self):
-        """Charge la liste des tournois déjà démarrés
+        """Load list of tournament in progress
 
         Returns:
             Objet tournoi: status: "inprogress"
@@ -230,7 +230,7 @@ class TournamentController:
         return tournoi
 
     def load_tournament_start(self):
-        """Charge la liste des tournois non démarrés
+        """Load list of tournament not started
 
         Returns:
             Objet tournoi: status: "tostart"
