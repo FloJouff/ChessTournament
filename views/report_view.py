@@ -12,7 +12,7 @@ class ReportView:
         print(f"{constante.DISPLAY_TOURNAMENT_NAME_DATES} --> Pour afficher le nom et les dates d'un tournoi")
         print(f"{constante.DISPLAY_TOURNAMENT_LIST_PLAYER} --> Pour afficher la liste des joueurs d'un tournoi")
         print(f"{constante.DISPLAY_TOURNAMENT_NUMBER_OF_ROUND} --> Pour afficher le nombre de tours d'un tournoi")
-        print(f"{constante.DISPLAY_TOURNAMENT_LIST_OF_MATCHS} --> Pour afficher la liste des matchs d'un tour")
+        print(f"{constante.DISPLAY_TOURNAMENT_LIST_OF_MATCHS} --> Pour afficher la liste des matchs d'un tournoi")
         print("0 --> Retour au menu précédent")
         print("")
         return input("Votre choix: ")

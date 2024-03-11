@@ -46,14 +46,14 @@ Un menu à choix multiples s'ouvre:
 
 ![alt text](image.png)
 
-D'autres menus s'ouvriront en fonction de vos besoins.
+D'autres menus s'ouvriront en fonction de vos réponses, en suivant l'arborescence.
 
 ### Consultation des données générées par les rapports:
 
 Les différents rapports générés sont au format .csv
 Ils apparaissent également sur la console en meme temps afin de s'assurer que la demande correspond bien au besoin.
 
-Ils sont identifiés pour être retoruvés facilement en fonction du rapport demandé.
+Ils sont identifiés pour être retrouvés facilement en fonction du rapport demandé (Nom du tournoi, liste des joueurs...).
 
 Pour les consulter, il faut les ouvrir avec Excel ou équivalent:
 
@@ -65,3 +65,11 @@ Sélectionner le fichier à consulter --> "Get-data"
 "Delimited" --> "Next"
 "Comma" (ou virgules) --> "Next"
 "Finish" puis "Ok"
+
+### Générer un nouveau fichier flake8-htlm:
+
+A partir du terminal de commande, en se placant à la racine du projet, taper la commande suivante:
+
+    $ flake8 --format=html --htmldir=flake8_rapport --exclude .env
+
+un nouveau dossier sera créé, contenant toutes les informations générées par ce rapport.
