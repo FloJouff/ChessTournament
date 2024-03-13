@@ -22,5 +22,5 @@ class ReportView:
         tournoi = Report.display_tournaments(self)
         print("")
         choice = input("Pour quel tournoi souhaitez vous ces informations? ")
-        id_tournoi = tournoi[int(choice)]["id"]
+        id_tournoi = tournoi[int(choice) - 1]["id"]
         return id_tournoi

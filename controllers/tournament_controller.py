@@ -45,11 +45,9 @@ class TournamentController:
                 for i in range(1, int(tournoi["number_of_round"]) + 1):
                     start_time = str(Round.creation_round(self))
                     round = Round(i, matches, start_time)
-                    print("debut", start_time)
+                    print("Debut", start_time)
                     print(f"Liste des matchs du tour {i}:")
-                    print("")
                     print("Matchs: ", round.matches)
-                    print("")
                     print(f"Saisissez les résultats de match du tour{i}")
                     players_and_score = self.match_resolution(round.matches)
                     for match in round.matches:
@@ -60,7 +58,10 @@ class TournamentController:
                     id = str(tournoi["id"])
                     Tournament.change_status_start_inprogress(id)
                     round.save_round(tournoi["id"])
-                    print("")
+                    if i < int(tournoi["number_of_round"]):
+                        choix = input("Souhaitez vous quitter le tournoi (Q)?: ")
+                        if choix == "Q":
+                            return
                 self.end_tournament(players_and_score, tournoi)
             elif choix == constante.RESUME_TOURNAMENT:
                 tournoi = self.load_tournament_inprogress()
@@ -69,11 +70,9 @@ class TournamentController:
                 for i in range(last_round_played + 1, int(tournoi["number_of_round"]) + 1):
                     start_time = str(Round.creation_round(self))
                     round = Round(i, matches, start_time)
-                    print("debut", start_time)
+                    print("Début", start_time)
                     print(f"Liste des matchs du tour {i}:")
-                    print("")
                     print("Matchs : ", round.matches)
-                    print("")
                     print(f"Saisissez les résultats de match du tour{i}")
                     players_and_score = self.match_resolution(round.matches)
                     for match in round.matches:
@@ -82,10 +81,12 @@ class TournamentController:
                     round.end_time = round.round_closure()
                     print(f"Fin du tour {i}")
                     round.save_round(tournoi["id"])
-                    print("")
+                    if i < int(tournoi["number_of_round"]):
+                        choix = input("Souhaitez vous quitter le tournoi (Q)?: ")
+                        if choix == "Q":
+                            return
                 self.end_tournament(players_and_score, tournoi)
             elif choix == "0":
-                print("Quitter")
                 break
 
     def generate_list_of_player(self, tournoi):
@@ -107,14 +108,13 @@ class TournamentController:
                 tournoi.players.append(id_player)
             else:
                 print("Ce joueur est déjà inscrit à ce tournoi")
-                return False
         return players
 
     def display_list_participants_with_score(self, tournoi):
         """Create list of player with score
 
         Args:
-            tournoi (object): 
+            tournoi (object):
 
         Returns:
             players_and_score(list): list of player with score
@@ -221,13 +221,23 @@ class TournamentController:
             if d["status"] == str("inprogress"):
                 tournoi.append(d)
         print("Afficher tous les tournois en cours: ")
-        i = 0
+        i = 1
         for t in tournoi:
             print(i, t["name"], t["place"], t["status"])
             i = i + 1
-        choix = input("Saissez le numéro du tournoi à reprendre: ")
-        tournoi = tournoi[int(choix)]
-        return tournoi
+        if tournoi == []:
+            print("Pas de tournoi en cours")
+
+        choix = input("Saissez le numéro du tournoi à reprendre ou Taper 'Q' pour quitter:: ")
+        if choix == "Q":
+            return self.run_tournament()
+        else:
+            try:
+                tournoi = tournoi[int(choix) - 1]
+                return tournoi
+            except IndexError:
+                print("Numero de tournoi invalide")
+                return self.load_tournament_inprogress()
 
     def load_tournament_start(self):
         """Load list of tournament not started
@@ -242,13 +252,23 @@ class TournamentController:
             if d["status"] == str("tostart"):
                 tournament.append(d)
         print("Afficher tous les tournois non démarrés: ")
-        i = 0
+        i = 1
         for t in tournament:
             print(i, t["name"], t["place"], t["status"])
             i = i + 1
-        choix = input("Saissez le numéro du tournoi à démarrer: ")
-        tournoi = tournament[int(choix)]
-        return tournoi
+        if tournament == []:
+            print("Pas de nouveau tournoi enregistré")
+
+        choix = input("Saissez le numéro du tournoi à démarrer ou taper 'Q' pour quitter: ")
+        if choix == "Q":
+            return self.run_tournament()
+        else:
+            try:
+                tournoi = tournament[int(choix) - 1]
+                return tournoi
+            except IndexError:
+                print("Numero de tournoi invalide")
+                return self.load_tournament_start()
 
     def end_tournament(self, players_and_score, tournoi):
         """Close tournament's status and display winner with score

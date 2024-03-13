@@ -29,8 +29,8 @@ class ReportController:
                 data = Player.load_all_players(self)
                 print("Liste de tous les joueurs enregistrés dans le fichier:")
                 data = sorted(data, key=attrgetter('name'))
-                print(data)
-                print("")
+                for player in data:
+                    print(player.name, player.first_name, player.ine)
                 for i in range(0, len(data)):
                     datas = [data[i].id, data[i].name, data[i].first_name,
                              data[i].gender, data[i].date_of_birth,
@@ -55,46 +55,44 @@ class ReportController:
                 tournoi = Report.display_tournaments(self)
                 print("")
                 choice = input("Pour quel tournoi souhaitez vous ces informations? ")
-                id_tournoi = tournoi[int(choice)]["id"]
+                id_tournoi = tournoi[int(choice) - 1]["id"]
                 data = Report.get_tournament_participants_by_id(id_tournoi)
                 players = []
                 for player in data:
                     joueur = Player.load_player_by_id(player)
                     players.append([joueur.name, joueur.first_name, joueur.ine])
                     players.sort()
+                for player in players:
+                    print("Participant: ", player)
                 for i in players:
-                    filename = "Joueurs", tournoi[int(choice)]["name"]
+                    filename = "Joueurs", tournoi[int(choice) - 1]["name"]
                     fieldnames = ["nom", "prénom", "ine"]
                     Report.add_data_to_csv(filename, fieldnames, i)
-                print("Participants :", players)
-                print("")
             elif choix == constante.DISPLAY_TOURNAMENT_NUMBER_OF_ROUND:
                 print("Liste des tournois: ")
                 tournoi = Report.display_tournaments(self)
                 print("")
                 choice = input("Pour quel tournoi souhaitez vous ces informations? ")
-                id_tournoi = tournoi[int(choice)]["id"]
+                id_tournoi = tournoi[int(choice) - 1]["id"]
                 data = Report.get_tournament_numb_of_round_by_id(id_tournoi)
-                datas = [tournoi[int(choice)]["id"],
-                         tournoi[int(choice)]["name"],
-                         tournoi[int(choice)]["number_of_round"]]
-                filename = tournoi[int(choice)]["name"], "nb_tour"
+                datas = [tournoi[int(choice) - 1]["id"],
+                         tournoi[int(choice) - 1]["name"],
+                         tournoi[int(choice) - 1]["number_of_round"]]
+                filename = tournoi[int(choice) - 1]["name"], "nb_tour"
                 fieldnames = ["id", "name", "nb_tour"]
                 Report.add_data_to_csv(filename, fieldnames, datas)
-                print(f"Nombre de tours du tournoi de {tournoi[int(choice)]["name"]} :", data)
+                print(f"Nombre de tours du tournoi de {tournoi[int(choice) - 1]["name"]} :", data)
                 print("")
             elif choix == constante.DISPLAY_TOURNAMENT_LIST_OF_MATCHS:
                 print("Liste des tournois: ")
                 tournoi = Report.display_tournaments(self)
-                print("")
                 choice = input("Pour quel tournoi souhaitez vous ces informations? ")
-                id_tournoi = tournoi[int(choice)]["id"]
-                filename = tournoi[int(choice)]["name"], "Matchs"
+                id_tournoi = tournoi[int(choice) - 1]["id"]
+                filename = tournoi[int(choice) - 1]["name"], "Matchs"
                 fieldnames = ["id", "name", "round", "matchs"]
                 round_list = Report.display_rounds_matchs(id_tournoi)
                 for list in round_list:
-                    datas = [tournoi[int(choice)]["id"], tournoi[int(choice)]["name"], list[0], list[1]]
+                    datas = [tournoi[int(choice) - 1]["id"], tournoi[int(choice) - 1]["name"], list[0], list[1]]
                     Report.add_data_to_csv(filename, fieldnames, datas)
             elif choix == "0":
-                print("Quitter")
                 break

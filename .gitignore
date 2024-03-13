@@ -2,3 +2,4 @@
 .idea/
 fichiers_csv/
 .mypy/
+.flake8

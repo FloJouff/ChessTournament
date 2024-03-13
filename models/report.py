@@ -44,7 +44,7 @@ class Report:
         for d in data:
             tournament.append(d)
         print("")
-        i = 0
+        i = 1
         for t in tournament:
             print(
                 i,
@@ -168,12 +168,16 @@ class Report:
             for tournament_dict in data:
                 if tournament_dict["id"] == id:
                     for round_dict in tournament_dict["rounds"]:
+                        print(f"Tournoi {tournament_dict["name"]}")
                         for i in range(0, int(len(round_dict["matchs"]))):
                             for j in range(0, 2):
                                 joueur = Player.load_player_by_id(round_dict["matchs"][i][j][0])
                                 round_dict["matchs"][i][j][0] = joueur
                             tournament = [round_dict["round"], round_dict["matchs"]]
                         round_list.append(tournament)
-                        print("Tour:", round_dict["round"], "Matchs:", round_dict["matchs"])
+                        print("Tour:", round_dict["round"])
+                        print("Matchs :")
+                        for match in round_dict["matchs"]:
+                            print(match[0], "vs", match[1])
                     break
         return round_list

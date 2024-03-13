@@ -16,7 +16,7 @@ class PlayerView:
             players (List[Player])
         """
         print("Afficher tous les joueurs: ")
-        i = 0
+        i = 1
         for player in players:
             print(i, "Nom: ", player.name, "  Prénom: ", player.first_name, "INE: ", player.ine)
             i = i + 1
@@ -53,7 +53,10 @@ class PlayerView:
         print("Veuillez rentrer les informations du joueur: ")
         name = input("Nom: ")
         first_name = input("Prénom: ")
-        gender = input("Sexe: ")
+        gender = input("Sexe (M ou F): ")
+        while gender != "M" and gender != "F":
+            print("Saisie incorrecte")
+            gender = input("Sexe (M ou F): ")
         while True:
             date_of_birth = input("Date de naissance: (format JJ/MM/AAAA)")
             if PlayerView.date_validation(date_of_birth):

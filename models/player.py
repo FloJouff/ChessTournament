@@ -107,7 +107,7 @@ class Player:
         with open("data/player_data.json", "r") as f:
             data = json.load(f)
             for player_dict in data:
-                if player_dict["ine"] == ine:
+                if player_dict["ine"] == ine.strip():
                     player = Player(
                         player_dict["name"],
                         player_dict["first_name"],
@@ -126,14 +126,18 @@ class Player:
             new_ine (str): player's ine
         """
         # Verification que l'INE indiqué n'existe pas déjà:
+        clean_ine = new_ine.strip()
         with open("data/player_data.json", "r") as f:
             data = json.load(f)
-            if any(element.get("ine") == new_ine for element in data):
-                print(f"Cet INE {new_ine} existe déjà dans le fichier json")
+            if any(element.get("ine") == clean_ine for element in data):
+                print(f"Cet INE {clean_ine} existe déjà dans le fichier json")
                 return False
+            else:
+                print("Le fichier est vide")
+
         # Vérification que le format de l'INE est correct:
         pattern = re.compile(r"^[A-Za-z]{2}\d{5}$")
-        if pattern.match(new_ine):
+        if pattern.match(clean_ine):
             return True
         else:
             print("Format invalide. Utilisez 2 lettres suivies de 5 chiffres.")

@@ -21,15 +21,15 @@ class TournamentView:
         name = input("Nom du tournoi:")
         place = input("Lieu: ")
         while True:
-            start_date = input("Date de début: ")
+            start_date = input("Date de début: (format JJ/MM/AAAA)")
             if PlayerView.date_validation(start_date):
                 break
         while True:
-            end_date = input("Date de fin: ")
+            end_date = input("Date de fin: (format JJ/MM/AAAA)")
             if PlayerView.date_validation(end_date):
                 break
         description = input("Tapez votre commentaire concernant ce tournoi: ")
-        number_of_round = int(input("Nombre de tour pour ce tournoi: "))
+        number_of_round = int(input("Nombre de tour pour ce tournoi (4 par défaut): "))
         return {
             "name": name,
             "place": place,
