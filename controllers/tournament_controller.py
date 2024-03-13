@@ -41,6 +41,8 @@ class TournamentController:
                 Report.display_tournaments(self)
             elif choix == constante.START_NEW_TOURNAMENT:
                 tournoi = self.load_tournament_start()
+                if tournoi is None:
+                    return
                 matches = self.round1_generating_matches(tournoi)
                 for i in range(1, int(tournoi["number_of_round"]) + 1):
                     start_time = str(Round.creation_round(self))
@@ -65,6 +67,8 @@ class TournamentController:
                 self.end_tournament(players_and_score, tournoi)
             elif choix == constante.RESUME_TOURNAMENT:
                 tournoi = self.load_tournament_inprogress()
+                if tournoi is None:
+                    return
                 last_round_played = int(tournoi["rounds"][-1]["round"])
                 matches = Report.display_matches_per_round(tournoi["id"], last_round_played)
                 for i in range(last_round_played + 1, int(tournoi["number_of_round"]) + 1):
@@ -216,30 +220,34 @@ class TournamentController:
         Returns:
             Objet tournoi: status: "inprogress"
         """
-        with open("data/tournaments.json", "r") as f:
-            data = json.load(f)
-        tournoi = []
-        for d in data:
-            if d["status"] == str("inprogress"):
-                tournoi.append(d)
-        print("Afficher tous les tournois en cours: ")
-        i = 1
-        for t in tournoi:
-            print(i, t["name"], t["place"], t["status"])
-            i = i + 1
-        if tournoi == []:
-            print("Pas de tournoi en cours")
+        try:
+            with open("data/tournaments.json", "r") as f:
+                data = json.load(f)
+            tournoi = []
+            for d in data:
+                if d["status"] == str("inprogress"):
+                    tournoi.append(d)
+            print("Afficher tous les tournois en cours: ")
+            i = 1
+            for t in tournoi:
+                print(i, t["name"], t["place"], t["status"])
+                i = i + 1
+            if tournoi == []:
+                print("Pas de tournoi en cours")
 
-        choix = input("Saissez le numéro du tournoi à reprendre ou Taper 'Q' pour quitter:: ")
-        if choix == "Q":
-            return self.run_tournament()
-        else:
-            try:
-                tournoi = tournoi[int(choix) - 1]
-                return tournoi
-            except IndexError:
-                print("Numero de tournoi invalide")
-                return self.load_tournament_inprogress()
+            choix = input("Saissez le numéro du tournoi à reprendre ou Taper 'Q' pour quitter:: ")
+            if choix == "Q":
+                raise QuitTournamentException("Retour au menu")
+            else:
+                try:
+                    tournoi = tournoi[int(choix) - 1]
+                    return tournoi
+                except IndexError:
+                    print("Numero de tournoi invalide")
+                    return self.load_tournament_inprogress()
+        except QuitTournamentException as e:
+            print(e)
+            return None
 
     def load_tournament_start(self):
         """Load list of tournament not started
@@ -247,30 +255,34 @@ class TournamentController:
         Returns:
             Objet tournoi: status: "tostart"
         """
-        with open("data/tournaments.json", "r") as f:
-            data = json.load(f)
-        tournament = []
-        for d in data:
-            if d["status"] == str("tostart"):
-                tournament.append(d)
-        print("Afficher tous les tournois non démarrés: ")
-        i = 1
-        for t in tournament:
-            print(i, t["name"], t["place"], t["status"])
-            i = i + 1
-        if tournament == []:
-            print("Pas de nouveau tournoi enregistré")
+        try:
+            with open("data/tournaments.json", "r") as f:
+                data = json.load(f)
+            tournament = []
+            for d in data:
+                if d["status"] == str("tostart"):
+                    tournament.append(d)
+            print("Afficher tous les tournois non démarrés: ")
+            i = 1
+            for t in tournament:
+                print(i, t["name"], t["place"], t["status"])
+                i = i + 1
+            if tournament == []:
+                print("Pas de nouveau tournoi enregistré")
 
-        choix = input("Saissez le numéro du tournoi à démarrer ou taper 'Q' pour quitter: ")
-        if choix == "Q":
-            return self.run_tournament()
-        else:
-            try:
-                tournoi = tournament[int(choix) - 1]
-                return tournoi
-            except IndexError:
-                print("Numero de tournoi invalide")
-                return self.load_tournament_start()
+            choix = input("Saissez le numéro du tournoi à démarrer ou taper 'Q' pour quitter: ")
+            if choix == "Q":
+                raise QuitTournamentException("Retour au menu")
+            else:
+                try:
+                    tournoi = tournament[int(choix) - 1]
+                    return tournoi
+                except IndexError:
+                    print("Numero de tournoi invalide")
+                    return self.load_tournament_start()
+        except QuitTournamentException as e:
+            print(e)
+            return None
 
     def end_tournament(self, players_and_score, tournoi):
         """Close tournament's status and display winner with score
@@ -292,3 +304,7 @@ class TournamentController:
             print(f"le vainqueur du tournoi {tournoi["name"]} est {players_and_score[0]}")
         id = str(tournoi["id"])
         Tournament.close_tournament(id)
+
+
+class QuitTournamentException(Exception):
+    pass

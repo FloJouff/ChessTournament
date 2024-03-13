@@ -48,6 +48,8 @@ Un menu à choix multiples s'ouvre:
 
 D'autres menus s'ouvriront en fonction de vos réponses, en suivant l'arborescence.
 
+Le dossier .data/ où sont stockés les données des joueurs et des tournois, est automatiquement créé, s'il n'existe pas déjà, au lancement du programme.
+
 ### Consultation des données générées par les rapports:
 
 Les différents rapports générés sont au format .csv
