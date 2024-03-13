@@ -200,7 +200,9 @@ class TournamentController:
         for i in range(0, len(players_and_score), 2):
             if i + 1 < len(players_and_score):
                 joueur1 = players_and_score[i]
-                if (((players_and_score[i], players_and_score[i + 1]) in matchs_played) or ((players_and_score[i + 1], players_and_score[i]) in matchs_played)) and (i < len(players_and_score) - 2):
+                if (((players_and_score[i], players_and_score[i + 1]) in
+                     matchs_played) or ((players_and_score[i + 1], players_and_score[i]) in
+                                        matchs_played)) and (i < len(players_and_score) - 2):
                     temp = players_and_score[i + 1]
                     players_and_score[i + 1] = players_and_score[i + 2]
                     players_and_score[i + 2] = temp

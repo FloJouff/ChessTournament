@@ -167,8 +167,8 @@ class Report:
             data = json.load(f)
             for tournament_dict in data:
                 if tournament_dict["id"] == id:
+                    print(f"Tournoi {tournament_dict["name"]}")
                     for round_dict in tournament_dict["rounds"]:
-                        print(f"Tournoi {tournament_dict["name"]}")
                         for i in range(0, int(len(round_dict["matchs"]))):
                             for j in range(0, 2):
                                 joueur = Player.load_player_by_id(round_dict["matchs"][i][j][0])
