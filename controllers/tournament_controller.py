@@ -107,7 +107,7 @@ class TournamentController:
         nb_participants = input("Indiquez le nombre de participants à ce tournoi: ")
         while (len(tournoi.players) < int(nb_participants)):
             choix = input("Saissez le numéro du joueur à inclure dans le tournoi: ")
-            id_player = players[int(choix)].id
+            id_player = players[int(choix) - 1].id
             if id_player not in tournoi.players:
                 tournoi.players.append(id_player)
             else:
@@ -158,18 +158,17 @@ class TournamentController:
             joueur2 = random.choice(players_and_score)
             players_and_score.remove(joueur2)
             matches1.append((joueur1, joueur2))
-        for match in matches1:
-            print(match)
+
         return matches1
 
     def match_resolution(self, matches):
         """Matchs scores resolution
 
         Args:
-            matches (list): Liste des matchs du tour
+            matches (list): Round's matchs list
 
         Returns:
-            List: list of players with new scores
+            players_and_score(List): list of players with new scores
         """
         for match in matches:
             print("-------------------------------------------")
@@ -193,7 +192,7 @@ class TournamentController:
             players_and_score (list): list of player with score
 
         Returns:
-           List : matchs du tour suivant
+           matches(List) : Next round's matchs
         """
         random.shuffle(players_and_score)
         players_and_score.sort(key=lambda x: x[1], reverse=True)
