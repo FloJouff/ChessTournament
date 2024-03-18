@@ -70,7 +70,12 @@ class TournamentController:
                 if tournoi is None:
                     return
                 last_round_played = int(tournoi["rounds"][-1]["round"])
-                matches = Report.display_matches_per_round(tournoi["id"], last_round_played)
+                matchs = Report.display_matches_per_round(tournoi["id"], last_round_played)
+                players_and_score = []
+                for match in matchs:
+                    for joueur in match:
+                        players_and_score.append(joueur)
+                matches = self.score_based_generating_matches(players_and_score)
                 for i in range(last_round_played + 1, int(tournoi["number_of_round"]) + 1):
                     start_time = str(Round.creation_round(self))
                     round = Round(i, matches, start_time)
