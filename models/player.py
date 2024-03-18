@@ -133,7 +133,7 @@ class Player:
                 print(f"Cet INE {clean_ine} existe déjà dans le fichier json")
                 return False
             else:
-                print("Le fichier est vide")
+                print("Enregistrement d'un nouvel INE")
 
         # Vérification que le format de l'INE est correct:
         pattern = re.compile(r"^[A-Za-z]{2}\d{5}$")

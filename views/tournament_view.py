@@ -29,7 +29,9 @@ class TournamentView:
             if PlayerView.date_validation(end_date):
                 break
         description = input("Tapez votre commentaire concernant ce tournoi: ")
-        number_of_round = int(input("Nombre de tour pour ce tournoi (4 par défaut): "))
+        number_of_round = input("Nombre de tour pour ce tournoi (4 par défaut): ")
+        if number_of_round == "":
+            number_of_round = 4
         return {
             "name": name,
             "place": place,
